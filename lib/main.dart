@@ -132,6 +132,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: BoxDecoration(
                   color :Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x29000000),
+                      blurRadius: 24.0, // soften the shadow
+                      spreadRadius: 4.0,
+                    )
+                  ]
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
