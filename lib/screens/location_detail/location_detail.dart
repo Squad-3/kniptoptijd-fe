@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'image_banner.dart';
 import 'text_section.dart';
+import 'my_logo.dart';
 
 class LocationDetail extends StatelessWidget {
   @override
@@ -11,6 +12,9 @@ class LocationDetail extends StatelessWidget {
       children: [
         ImageBanner("assets/images/kiyomizu-dera.jpg"),
         TextSection("KNIPTOPTIJD", "Vind"),
+        Container(
+          child: MyLogo(),
+        ),
       ],
     ));
   }
