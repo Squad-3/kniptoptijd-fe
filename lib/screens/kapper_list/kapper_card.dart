@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../theme.dart' as Theme;
 import 'package:kniptoptijd/components/button.dart';
 
 Card renderKapperCard(String name, int id, BuildContext context) {
