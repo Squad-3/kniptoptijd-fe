@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/screens/pushed_screen.dart';
 import '../theme.dart' as Theme;
-import '../screens/listscreen.dart';
 
 FlatButton button(BuildContext context) {
   return FlatButton(
     onPressed: () {
-      Navigator.push(
+      Navigator.of(
         context,
-        MaterialPageRoute(builder: (context) => ListScreen()),
-      );
+        rootNavigator: false,
+      ).pushNamed(PushedScreen.route);
     },
     child: Container(
       padding: EdgeInsets.all(10),

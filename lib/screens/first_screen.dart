@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pushed_screen.dart';
 
-class FirstScreen extends StatelessWidget {
+class HomePage extends StatelessWidget {
   static const route = '/first';
 
   @override

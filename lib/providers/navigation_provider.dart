@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import '../models/screen.dart';
-import '../screens/first_screen.dart';
+import '../screens/kapper_overview.dart';
 import '../screens/pushed_screen.dart';
 import '../screens/root.dart';
-import '../screens/second_screen.dart';
+import '../screens/home_page.dart';
 import '../screens/third_screen.dart';
 import '../components/exit_dialog.dart';
 import 'package:provider/provider.dart';
 
-const FIRST_SCREEN = 0;
-const SECOND_SCREEN = 1;
+const HOME = 0;
+const OVERVIEW = 1;
 const THIRD_SCREEN = 2;
 
 class NavigationProvider extends ChangeNotifier {
@@ -17,7 +17,7 @@ class NavigationProvider extends ChangeNotifier {
   static NavigationProvider of(BuildContext context) =>
       Provider.of<NavigationProvider>(context, listen: false);
 
-  int _currentScreenIndex = FIRST_SCREEN;
+  int _currentScreenIndex = HOME;
 
   int get currentTabIndex => _currentScreenIndex;
 
@@ -32,10 +32,24 @@ class NavigationProvider extends ChangeNotifier {
   }
 
   final Map<int, Screen> _screens = {
-    FIRST_SCREEN: Screen(
-      title: 'First',
-      child: FirstScreen(),
-      initialRoute: FirstScreen.route,
+    HOME: Screen(
+      title: 'Home',
+      child: HomePage(),
+      initialRoute: HomePage.route,
+      navigatorState: GlobalKey<NavigatorState>(),
+      onGenerateRoute: (settings) {
+        print('Generating route: ${settings.name}');
+        switch (settings.name) {
+          default:
+            return MaterialPageRoute(builder: (_) => HomePage());
+        }
+      },
+      scrollController: ScrollController(),
+    ),
+    OVERVIEW: Screen(
+      title: 'Zoek',
+      child: KapperOverview(),
+      initialRoute: KapperOverview.route,
       navigatorState: GlobalKey<NavigatorState>(),
       onGenerateRoute: (settings) {
         print('Generating route: ${settings.name}');
@@ -43,27 +57,13 @@ class NavigationProvider extends ChangeNotifier {
           case PushedScreen.route:
             return MaterialPageRoute(builder: (_) => PushedScreen());
           default:
-            return MaterialPageRoute(builder: (_) => FirstScreen());
-        }
-      },
-      scrollController: ScrollController(),
-    ),
-    SECOND_SCREEN: Screen(
-      title: 'Second',
-      child: SecondScreen(),
-      initialRoute: SecondScreen.route,
-      navigatorState: GlobalKey<NavigatorState>(),
-      onGenerateRoute: (settings) {
-        print('Generating route: ${settings.name}');
-        switch (settings.name) {
-          default:
-            return MaterialPageRoute(builder: (_) => SecondScreen());
+            return MaterialPageRoute(builder: (_) => KapperOverview());
         }
       },
       scrollController: ScrollController(),
     ),
     THIRD_SCREEN: Screen(
-      title: 'Third',
+      title: 'Menu',
       child: ThirdScreen(),
       initialRoute: ThirdScreen.route,
       navigatorState: GlobalKey<NavigatorState>(),
@@ -112,8 +112,8 @@ class NavigationProvider extends ChangeNotifier {
       currentNavigatorState.pop();
       return false;
     } else {
-      if (currentTabIndex != FIRST_SCREEN) {
-        setTab(FIRST_SCREEN);
+      if (currentTabIndex != HOME) {
+        setTab(HOME);
         notifyListeners();
         return false;
       } else {

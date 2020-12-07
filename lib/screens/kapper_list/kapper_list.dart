@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'kapper_card.dart';
 
-class KapperOverview extends StatelessWidget {
+class KapperList extends StatelessWidget {
 
-  KapperOverview();
+  KapperList();
 
   @override
   Widget build(BuildContext context) {
