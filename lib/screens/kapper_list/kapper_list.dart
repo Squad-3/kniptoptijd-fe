@@ -15,6 +15,7 @@ class KapperList extends StatelessWidget {
       builder: (context, snapshot) {
         var kappers = json.decode(snapshot.data.toString());
         return ListView.builder(
+          padding: EdgeInsets.only(top: 4),
           itemCount: kappers == null ? 0 : kappers.length,
           itemBuilder: (BuildContext context, int index) {
             return renderKapperCard(kappers[index]['name'], kappers[index]['id'], context);

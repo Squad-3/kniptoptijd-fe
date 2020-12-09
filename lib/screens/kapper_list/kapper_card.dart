@@ -3,7 +3,6 @@ import 'package:kniptoptijd/components/button.dart';
 
 Card renderKapperCard(String name, int id, BuildContext context) {
   return Card(
-    margin: EdgeInsets.symmetric(vertical: 4.0),
     child: Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -15,12 +14,15 @@ Card renderKapperCard(String name, int id, BuildContext context) {
           )
         ]
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(name),
-          button(context),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(name),
+            button(context),
+          ],
+        ),
       ),
     ),
   );
