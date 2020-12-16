@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/components/button.dart';
+import 'package:kniptoptijd/models/kapper_model.dart';
 
-Card renderKapperCard(String name, int id, BuildContext context) {
+Card renderKapperCard(Kapper kapper, BuildContext context) {
   return Card(
     child: Container(
       decoration: BoxDecoration(
@@ -19,7 +20,7 @@ Card renderKapperCard(String name, int id, BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(name),
+            Text(kapper.naam),
             button(context),
           ],
         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/main.dart';
+import 'package:kniptoptijd/services/location_search.dart';
 import 'location_detail/location_detail.dart';
 import '../style.dart';
 
@@ -16,6 +18,8 @@ class ThirdScreen extends StatelessWidget {
             textTheme: TextTheme(
               title: MainTitleStyle,
               body1: Body1TextStyle,
-            )));
+            )
+        )
+    );
   }
 }
