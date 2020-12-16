@@ -4,16 +4,19 @@ import 'package:http/http.dart';
 import 'package:kniptoptijd/models/kapper_model.dart';
 
 class LocationSearch {
-  final String locationurl = 'http://10.0.2.2:5000?stad=utrecht&straatnaam=straat';
+  final String locationUrl = 'http://192.168.50.166:5000/locatie?locatie=utrecht';
 
   Future<List<Kapper>> getKappers() async {
-    Response res = await post(locationurl);
+    Response res;
+    try {
+      res = await post(locationUrl);
+    } catch (e) {
+      print(e);
+    }
 
     if(res.body != null) {
-      print(res.body);
       List<dynamic> body = jsonDecode(res.body);
       List<Kapper> kappers = body.map((dynamic item) => Kapper.fromJson(item)).toList();
-      print(kappers[0]);
       return kappers;
     } else {
       throw "Geen kappers gevonden.";

@@ -41,7 +41,7 @@ class _KapperOverviewState extends State<KapperOverview> {
             ),
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.only(top: 30),
+              padding: EdgeInsets.only(top:30),
               child: FractionallySizedBox(
                 widthFactor: 0.9,
                 child: Column(
@@ -83,6 +83,7 @@ class _KapperOverviewState extends State<KapperOverview> {
                         children: [
                           Expanded(
                             child: Container(
+                              margin: EdgeInsets.only(bottom: 4),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.vertical(
