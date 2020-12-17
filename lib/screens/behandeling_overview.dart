@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'kapper_list/kapper_list.dart';
 
-class KappersBehandeling extends StatefulWidget {      //de hele pagina valt onder class KapperOverview
-  static const route = '/overview';                  //route
+class KappersBehandeling extends StatefulWidget {
+  //de hele pagina valt onder class KapperOverview
+  static const route = '/overview'; //route
   KappersBehandeling({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -21,32 +22,47 @@ class KappersBehandeling extends StatefulWidget {      //de hele pagina valt ond
   _KappersBehandelingState createState() => _KappersBehandelingState();
 }
 
-class _KappersBehandelingState extends State<KappersBehandeling> {              //Hier haalt flutter zijn content vandaan
+class _KappersBehandelingState extends State<KappersBehandeling> {
+  //Hier haalt flutter zijn content vandaan
+
+  var _value = false;
+  var _value1 = false;
+  var _value2 = false;
+  var _value3 = false;
+  var _value4 = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(                                                   // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
+    return Scaffold(
+      // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
-      body: Stack(children: [                                          // In de body vind je alle content terug bijvoorbeeld stack, meerdere elementen op elkaar (z-index)
+      body: Stack(children: [
+        // In de body vind je alle content terug bijvoorbeeld stack, meerdere elementen op elkaar (z-index)
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
-                image: AssetImage("assets/images/scaffold-bg.png"),      //path veranderen voor een andere image/swoosh
+                image: AssetImage(
+                    "assets/images/kapper_hakan.jpg"), //path veranderen voor een andere image/swoosh
                 fit: BoxFit.contain,
                 alignment: Alignment(-1.0, -1.0)),
           ),
         ),
-        Container(                                  //Is de hele body alles wat op de pagina staat en/of komt
+        Container(
+          //Is de hele body alles wat op de pagina staat en/of komt
           alignment: Alignment.center,
           padding: EdgeInsets.only(top: 30),
-          child: FractionallySizedBox(             // De container maar dan iets smaller 90% in dit geval
+          child: FractionallySizedBox(
+            // De container maar dan iets smaller 90% in dit geval
             widthFactor: 0.9,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,        //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
+              mainAxisAlignment: MainAxisAlignment
+                  .center, //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(                //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
+                  padding: EdgeInsets.symmetric(
+                    //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
                     horizontal: 20,
                     vertical: 15,
                   ),
@@ -55,36 +71,20 @@ class _KappersBehandelingState extends State<KappersBehandeling> {              
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                      hintText: "\'Test \' om test o'clock",
-                      hintStyle:
-                      TextStyle(fontSize: 16.0, color: Colors.grey[300]),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 3.0,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 3.0,
-                        ),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 3.0,
-                        ),
-                      ),
-                    ),
+                        hintText: "Kapper Hakan",
+                        hintStyle:
+                            TextStyle(fontSize: 24.0, color: Colors.grey[300])),
                   ),
                 ),
                 Expanded(
-                  child: Row(                                                    // Dit is een row en geen column omdat we de volledige breedte wilden gebruiken ipv volledige hoogte
+                  child: Row(
+                    // Dit is een row en geen column omdat we de volledige breedte wilden gebruiken ipv volledige hoogte
                     children: [
-                      Expanded(                                           // Expanded is: gebruikt volledige breedte die beschikbaar is dus in dit geval die 90% als het in een column was de volledige hoogte
+                      Expanded(
+                        // Expanded is: gebruikt volledige breedte die beschikbaar is dus in dit geval die 90% als het in een column was de volledige hoogte
                         child: Container(
-                          decoration: BoxDecoration(                     //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
+                          decoration: BoxDecoration(
+                              //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
                               color: Colors.white,
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20.0),
@@ -97,25 +97,83 @@ class _KappersBehandelingState extends State<KappersBehandeling> {              
                                   spreadRadius: 4.0,
                                 )
                               ]),
-                          child: Padding(                                 // child/children is wat er in de element boven komt te staan
-                            padding: const EdgeInsets.symmetric(           //onder andere container kan nooit meerdere children hebben andere elementen hebben een list aan children nodig
+                          child: Padding(
+                            // child/children is wat er in de element boven komt te staan
+                            padding: const EdgeInsets.symmetric(
+                              //onder andere container kan nooit meerdere children hebben andere elementen hebben een list aan children nodig
                               horizontal: 20,
                               vertical: 15,
                             ),
-                            child: Column(                                     //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
+                            child: Column(
+                              //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Test Skeleton',
+                                  'Behandelingen',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0),
                                 ),
                                 Text(
-                                  'Lekker Testen',
+                                  ' \n Selecteer uw behandelingen hieronder:',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 15.0),
+                                ),
+                                CheckboxListTile(
+                                    value: _value,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value = value;
+                                      });
+                                    },
+                                  title: Text('Knippen heer 25€'),
+                                  subtitle: Text('ca. 30 minuten'),
+                                  isThreeLine: true,
+                                ),
+                                CheckboxListTile(
+                                  value: _value1,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _value1 = value;
+                                    });
+                                  },
+                                  title: Text('Knippen vrouw 35€'),
+                                  subtitle: Text('ca. 45 minuten'),
+                                  isThreeLine: true,
+                                ),
+                                CheckboxListTile(
+                                  value: _value2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _value2 = value;
+                                    });
+                                  },
+                                  title: Text('Knippen kind 20€'),
+                                  subtitle: Text('ca. 30 minuten'),
+                                  isThreeLine: true,
+                                ),
+                                CheckboxListTile(
+                                  value: _value3,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _value3 = value;
+                                    });
+                                  },
+                                  title: Text('Baard trimmen 20€'),
+                                  subtitle: Text('ca. 30 minuten'),
+                                  isThreeLine: true,
+                                ),
+                                CheckboxListTile(
+                                  value: _value4,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _value4 = value;
+                                    });
+                                  },
+                                  title: Text('Haar verven 65€'),
+                                  subtitle: Text('ca. 1 uur en 30 minuten'),
+                                  isThreeLine: true,
                                 ),
                               ],
                             ),
@@ -133,4 +191,3 @@ class _KappersBehandelingState extends State<KappersBehandeling> {              
     );
   }
 }
-
