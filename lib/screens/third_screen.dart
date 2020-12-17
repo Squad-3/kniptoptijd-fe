@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/main.dart';
-import 'package:kniptoptijd/services/location_search.dart';
-import 'location_detail/location_detail.dart';
 import '../style.dart';
 
 class ThirdScreen extends StatelessWidget {
@@ -10,7 +7,14 @@ class ThirdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: LocationDetail(),
+        home: Center(
+          child: Column(
+            children: [
+              Text('Home'),
+              Text('Account'),
+            ],
+          ),
+        ),
         theme: ThemeData(
             appBarTheme: AppBarTheme(
               textTheme: TextTheme(title: AppBarTextStyle),
