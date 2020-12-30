@@ -30,6 +30,10 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
+  String valueChoose;
+  List listItem = [
+    'Geen voorkeur', 'Hakan', 'Bert', 'Milou', 'Arno', 'Jeroen', 'Stijn'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -174,6 +178,39 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                   title: Text('Haar verven 65€'),
                                   subtitle: Text('ca. 1 uur en 30 minuten'),
                                   isThreeLine: true,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(14.0),
+                                  child: Container(
+                                    padding: EdgeInsets.only(left: 14, right: 14),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    child: DropdownButton(
+                                      hint: Text('Selecteer uw kapper:'),
+                                      icon: Icon(Icons.content_cut),
+                                      iconSize: 22,
+                                      isExpanded: true,
+                                      underline: SizedBox(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16
+                                      ),
+                                      value: valueChoose,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          valueChoose = newValue;
+                                        });
+                                      },
+                                      items: listItem.map((valueItem) {
+                                        return DropdownMenuItem(
+                                            value : valueItem,
+                                            child: Text(valueItem),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
