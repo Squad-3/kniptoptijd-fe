@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'kapper_list/kapper_list.dart';
+import '../theme.dart' as Theme;
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
@@ -30,6 +30,8 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   var _value2 = false;
   var _value3 = false;
   var _value4 = false;
+  var _value5 = false;
+  var _value6 = false;
   String valueChoose;
   List listItem = [
     'Geen voorkeur', 'Hakan', 'Bert', 'Milou', 'Arno', 'Jeroen', 'Stijn'
@@ -108,111 +110,156 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                               horizontal: 20,
                               vertical: 15,
                             ),
-                            child: Column(
-                              //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Behandelingen',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0),
-                                ),
-                                Text(
-                                  ' \n Selecteer uw behandelingen hieronder:',
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      fontSize: 15.0),
-                                ),
-                                CheckboxListTile(
-                                    value: _value,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value = value;
-                                      });
-                                    },
-                                  title: Text('Knippen heer 25€'),
-                                  subtitle: Text('ca. 30 minuten'),
-                                  isThreeLine: true,
-                                ),
-                                CheckboxListTile(
-                                  value: _value1,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _value1 = value;
-                                    });
-                                  },
-                                  title: Text('Knippen vrouw 35€'),
-                                  subtitle: Text('ca. 45 minuten'),
-                                  isThreeLine: true,
-                                ),
-                                CheckboxListTile(
-                                  value: _value2,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _value2 = value;
-                                    });
-                                  },
-                                  title: Text('Knippen kind 20€'),
-                                  subtitle: Text('ca. 30 minuten'),
-                                  isThreeLine: true,
-                                ),
-                                CheckboxListTile(
-                                  value: _value3,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _value3 = value;
-                                    });
-                                  },
-                                  title: Text('Baard trimmen 20€'),
-                                  subtitle: Text('ca. 30 minuten'),
-                                  isThreeLine: true,
-                                ),
-                                CheckboxListTile(
-                                  value: _value4,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _value4 = value;
-                                    });
-                                  },
-                                  title: Text('Haar verven 65€'),
-                                  subtitle: Text('ca. 1 uur en 30 minuten'),
-                                  isThreeLine: true,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(14.0),
-                                  child: Container(
-                                    padding: EdgeInsets.only(left: 14, right: 14),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey, width: 1),
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    child: DropdownButton(
-                                      hint: Text('Selecteer uw kapper:'),
-                                      icon: Icon(Icons.content_cut),
-                                      iconSize: 22,
-                                      isExpanded: true,
-                                      underline: SizedBox(),
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16
-                                      ),
-                                      value: valueChoose,
-                                      onChanged: (newValue) {
+                            child: SingleChildScrollView(
+                              child: Column(
+                                //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Behandelingen',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0),
+                                  ),
+                                  Text(
+                                    ' \n Selecteer uw behandelingen hieronder:',
+                                    style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 15.0),
+                                  ),
+                                  CheckboxListTile(
+                                      value: _value,
+                                      onChanged: (value) {
                                         setState(() {
-                                          valueChoose = newValue;
+                                          _value = value;
                                         });
                                       },
-                                      items: listItem.map((valueItem) {
-                                        return DropdownMenuItem(
-                                            value : valueItem,
-                                            child: Text(valueItem),
-                                        );
-                                      }).toList(),
+                                    title: Text('Knippen heer 25€'),
+                                    subtitle: Text('ca. 30 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value1,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value1 = value;
+                                      });
+                                    },
+                                    title: Text('Opscheer met fade 20€'),
+                                    subtitle: Text('ca. 20 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value5,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value5 = value;
+                                      });
+                                    },
+                                    title: Text('Knippen vrouw 35€'),
+                                    subtitle: Text('ca. 45 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value6,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value6 = value;
+                                      });
+                                    },
+                                    title: Text('Knippen & brushing 60€'),
+                                    subtitle: Text('ca. 1 uur en 15 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value2,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value2 = value;
+                                      });
+                                    },
+                                    title: Text('Knippen kind 20€'),
+                                    subtitle: Text('ca. 30 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value3,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value3 = value;
+                                      });
+                                    },
+                                    title: Text('Baard trimmen 20€'),
+                                    subtitle: Text('ca. 30 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  CheckboxListTile(
+                                    value: _value4,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value4 = value;
+                                      });
+                                    },
+                                    title: Text('Haar verven 65€'),
+                                    subtitle: Text('ca. 1 uur en 30 minuten'),
+                                    isThreeLine: true,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(14.0),
+                                    child: Container(
+                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey, width: 1),
+                                        borderRadius: BorderRadius.circular(24),
+                                      ),
+                                      child: DropdownButton(
+                                        hint: Text('Selecteer uw kapper:'),
+                                        icon: Icon(Icons.content_cut),
+                                        iconSize: 22,
+                                        isExpanded: true,
+                                        underline: SizedBox(),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16
+                                        ),
+                                        value: valueChoose,
+                                        onChanged: (newValue) {
+                                          setState(() {
+                                            valueChoose = newValue;
+                                          });
+                                        },
+                                        items: listItem.map((valueItem) {
+                                          return DropdownMenuItem(
+                                              value : valueItem,
+                                              child: Text(valueItem),
+                                          );
+                                        }).toList(),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  FlatButton(
+                                      onPressed: () {
+
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                              color: Theme.data.primaryColor,
+                                            ),
+                                            child: Text(
+                                              "Reserveer",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                      ),
+                                      ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
