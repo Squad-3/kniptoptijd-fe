@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapper_model.dart';
+import 'package:kniptoptijd/models/kapper.dart';
 import 'package:kniptoptijd/services/location_search.dart';
 import 'kapper_card.dart';
 

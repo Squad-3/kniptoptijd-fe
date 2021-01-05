@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/models/kapperdata.dart';
 import 'providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider<KapperData>(create: (context) => KapperData()),
       ],
       child: Builder(
         builder: (context) {
