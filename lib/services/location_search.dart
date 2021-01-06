@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
-import 'package:kniptoptijd/models/kapper_model.dart';
+import 'package:kniptoptijd/models/kapper.dart';
 
 class LocationSearch {
   final String locationUrl = 'http://192.168.50.166:5000/locatie?locatie=utrecht';

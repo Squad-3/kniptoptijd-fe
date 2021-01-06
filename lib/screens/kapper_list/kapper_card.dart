@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/components/button.dart';
-import 'package:kniptoptijd/models/kapper_model.dart';
+import 'package:kniptoptijd/models/kapper.dart';
 
 Card renderKapperCard(Kapper kapper, BuildContext context) {
   return Card(
@@ -36,7 +36,7 @@ Card renderKapperCard(Kapper kapper, BuildContext context) {
                   width: 80,
                 ),
                 SizedBox(height: 10),
-                button(context),
+                button(context, kapper),
               ],
             ),
           ],
