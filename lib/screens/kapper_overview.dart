@@ -83,6 +83,7 @@ class _KapperOverviewState extends State<KapperOverview> {
                   children: [
                     Expanded(
                       child: Container(
+                        margin: EdgeInsets.only(bottom: 4),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.vertical(

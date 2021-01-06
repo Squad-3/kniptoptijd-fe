@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/models/kapper.dart';
+import 'package:kniptoptijd/models/kapperdata.dart';
 import 'package:kniptoptijd/screens/pushed_screen.dart';
+import 'package:provider/provider.dart';
 import '../theme.dart' as Theme;
 
-ButtonTheme button(BuildContext context) {
+ButtonTheme button(BuildContext context, kapper) {
   return ButtonTheme(
     padding: EdgeInsets.all(0), //adds padding inside the button
     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, //limits the touch area to the button area
@@ -14,6 +17,7 @@ ButtonTheme button(BuildContext context) {
           context,
           rootNavigator: false,
         ).pushNamed(PushedScreen.route);
+        Provider.of<KapperData>(context).updateKapper(kapper);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
