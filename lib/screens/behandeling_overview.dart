@@ -22,7 +22,6 @@ class KappersBehandeling extends StatefulWidget {
   _KappersBehandelingState createState() => _KappersBehandelingState();
 }
 
-
 class _KappersBehandelingState extends State<KappersBehandeling> {
   //Hier haalt flutter zijn content vandaan
 
@@ -37,8 +36,6 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   List listItem = [
     'Geen voorkeur', 'Hakan', 'Bert', 'Milou', 'Arno', 'Jeroen', 'Stijn'
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
