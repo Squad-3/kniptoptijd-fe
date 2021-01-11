@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart' as Theme;
+import 'package:provider/provider.dart';
+import 'package:kniptoptijd/models/kapperdata.dart';
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
@@ -39,6 +43,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
 
   @override
   Widget build(BuildContext context) {
+    var kapper = Provider.of<KapperData>(context).kapperData;
     return Scaffold(
       // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
@@ -77,7 +82,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                        hintText: "Kapper Hakan",
+                        hintText: kapper.naam,
                         hintStyle:
                             TextStyle(fontSize: 24.0, color: Colors.grey[300])),
                   ),
