@@ -22,6 +22,7 @@ class KappersBehandeling extends StatefulWidget {
   _KappersBehandelingState createState() => _KappersBehandelingState();
 }
 
+
 class _KappersBehandelingState extends State<KappersBehandeling> {
   //Hier haalt flutter zijn content vandaan
 
@@ -36,6 +37,8 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   List listItem = [
     'Geen voorkeur', 'Hakan', 'Bert', 'Milou', 'Arno', 'Jeroen', 'Stijn'
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +130,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                         fontStyle: FontStyle.italic,
                                         fontSize: 15.0),
                                   ),
+
                                   CheckboxListTile(
                                       value: _value,
                                       onChanged: (value) {
@@ -239,7 +243,6 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                   ),
                                   FlatButton(
                                       onPressed: () {
-
                                       },
                                       child: Align(
                                         alignment: Alignment.bottomCenter,

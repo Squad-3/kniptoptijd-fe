@@ -12,6 +12,8 @@ const HOME = 0;
 const OVERVIEW = 1;
 const THIRD_SCREEN = 2;
 
+
+
 class NavigationProvider extends ChangeNotifier {
   /// Shortcut method for getting [NavigationProvider].
   static NavigationProvider of(BuildContext context) =>
