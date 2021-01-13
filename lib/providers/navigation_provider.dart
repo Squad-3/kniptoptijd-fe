@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/screens/overzicht_reservering.dart';
 import '../models/screen.dart';
 import '../screens/kapper_overview.dart';
 import '../screens/pushed_screen.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 const HOME = 0;
 const OVERVIEW = 1;
 const THIRD_SCREEN = 2;
+
 
 class NavigationProvider extends ChangeNotifier {
   /// Shortcut method for getting [NavigationProvider].
@@ -76,6 +78,7 @@ class NavigationProvider extends ChangeNotifier {
       },
       scrollController: ScrollController(),
     ),
+
   };
 
   List<Screen> get screens => _screens.values.toList();

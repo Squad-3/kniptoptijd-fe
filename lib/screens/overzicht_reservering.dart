@@ -1,15 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import '../theme.dart' as Theme;
-import 'package:provider/provider.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
+import 'kapper_list/kapper_list.dart';
+
+class OverzichtReservering extends StatefulWidget {      //de hele pagina valt onder class KapperOverview
+  static const route = '/';                  //route
+  OverzichtReservering({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  _OverzichtReserveringState createState() => _OverzichtReserveringState();
+}
 
 
-
-class ThirdScreen extends StatelessWidget {
-  static const route = '/third';
-
+class _OverzichtReserveringState extends State<OverzichtReservering> {              //Hier haalt flutter zijn content vandaan
   @override
   Widget build(BuildContext context) {
     return Scaffold(                                                   // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
@@ -19,8 +32,7 @@ class ThirdScreen extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
-                image: AssetImage("assets/images/kapper_hakan.jpg"
-                    ), //path veranderen voor een andere image/swoosh
+                image: AssetImage("assets/images/scaffold-bg.png"),      //path veranderen voor een andere image/swoosh
                 fit: BoxFit.contain,
                 alignment: Alignment(-1.0, -1.0)),
           ),
@@ -28,17 +40,14 @@ class ThirdScreen extends StatelessWidget {
         Container(                                  //Is de hele body alles wat op de pagina staat en/of komt
           alignment: Alignment.center,
           padding: EdgeInsets.only(top: 30),
-          child: FractionallySizedBox(
-            // De container maar dan iets smaller 90% in dit geval
+          child: FractionallySizedBox(             // De container maar dan iets smaller 90% in dit geval
             widthFactor: 0.9,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment
-                  .center, //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
+              mainAxisAlignment: MainAxisAlignment.center,        //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
+                  padding: EdgeInsets.symmetric(                //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
                     horizontal: 20,
                     vertical: 15,
                   ),
@@ -47,9 +56,28 @@ class ThirdScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                        hintText: 'Kapper Hakan',
-                        hintStyle:
-                        TextStyle(fontSize: 24.0, color: Colors.grey[300])),
+                      hintText: "\'Test \' om test o'clock",
+                      hintStyle:
+                      TextStyle(fontSize: 16.0, color: Colors.grey[300]),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 3.0,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 3.0,
+                        ),
+                      ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -78,32 +106,17 @@ class ThirdScreen extends StatelessWidget {
                             child: Column(                                     //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Kapper Hakan',
+                                Text(
+                                  'Test Skeleton',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24.0),
-                                ),
-                                RatingBar.builder(
-                                  initialRating: 5,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemSize: 22,
-                                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-                                  itemBuilder: (context, _) => Icon(
-                                    Icons.star,
-                                    color: Colors.amberAccent,
-                                  ),
-                                  onRatingUpdate: (rating){
-                                    print(rating);
-                                  },
+                                      fontSize: 20.0),
                                 ),
                                 Text(
-                                  'Overzicht reservering:',
+                                  'Lekker Testen',
                                   style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      fontSize: 19.0),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0),
                                 ),
                               ],
                             ),
