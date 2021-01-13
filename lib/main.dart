@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
-import 'package:kniptoptijd/models/kapsalons.dart';
+import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/models/kapsalonSearchResults.dart';
+import 'models/kapsalonBehandelingen.dart';
 import 'providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,9 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
-        ChangeNotifierProvider<KapperData>(create: (context) => KapperData()),
-        ChangeNotifierProvider<Kapsalons>(create: (context) => Kapsalons()),
+        ChangeNotifierProvider<KapsalonState>(create: (context) => KapsalonState()),
+        ChangeNotifierProvider<KapsalonSearchResults>(create: (context) => KapsalonSearchResults()),
+        ChangeNotifierProvider<KapsalonBehandelingen>(create: (context) => KapsalonBehandelingen()),
       ],
       child: Builder(
         builder: (context) {

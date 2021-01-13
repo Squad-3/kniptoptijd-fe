@@ -14,7 +14,7 @@ class _SearchFormState extends State<SearchForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final searchController = TextEditingController();
-  static var test = LocationSearch();
+  static var test = get_kapsalon_details();
 
   @override
   void dispose() {

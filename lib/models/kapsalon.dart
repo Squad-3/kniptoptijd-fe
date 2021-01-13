@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Kapper {
+class Kapsalon {
   final int kapperId;
   final String logo;
   final String naam;
@@ -9,7 +9,7 @@ class Kapper {
   final String stad;
   final String straatnaam;
 
-  Kapper({
+  Kapsalon({
     @required this.kapperId,
     this.logo,
     this.naam,
@@ -19,8 +19,8 @@ class Kapper {
     this.straatnaam
   });
 
-  factory Kapper.fromJson(Map<String, dynamic> json) {
-    return Kapper(
+  factory Kapsalon.fromJson(Map<String, dynamic> json) {
+    return Kapsalon(
       kapperId: json['kapperId'] as int,
       logo: json['logo'] as String,
       naam: json['naam'] as String,

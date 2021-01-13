@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/screens/behandelingList.dart';
 import 'package:kniptoptijd/screens/behandeling_overview.dart';
 import 'package:kniptoptijd/theme.dart';
+
+import 'kapper_behandelingen.dart';
 
 
 
@@ -15,11 +18,11 @@ class ThirdScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              child: Text('Button 1'),
-            ),
-            RaisedButton(
-              child: Text('Button 2'),
+            Expanded(
+                child: SizedBox(
+                  height: 200.0,
+                    child: KapperBehandelingen()
+                )
             ),
           ],
         ),
