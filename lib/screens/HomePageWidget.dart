@@ -75,7 +75,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Icons.location_on,
                         color: Colors.black,
                       ),
-                      hintText: 'Zoek op postcode, ploatsnaam',
+                      hintText: 'Zoek op postcode, plaatsnaam',
                       hintStyle: TextStyle(
                           fontSize: ScreenUtil().setSp(25),
                           color: Colors.white,

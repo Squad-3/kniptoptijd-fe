@@ -10,6 +10,10 @@ import 'package:kniptoptijd/models/kapperdata.dart';
 class ThirdScreen extends StatelessWidget {
   static const route = '/third';
 
+  Color mainColor = Color(0xfff15d5d);
+
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(                                                   // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
@@ -47,7 +51,7 @@ class ThirdScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                        hintText: 'Kapper Hakan',
+                        hintText: '',
                         hintStyle:
                         TextStyle(fontSize: 24.0, color: Colors.grey[300])),
                   ),
@@ -89,8 +93,8 @@ class ThirdScreen extends StatelessWidget {
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,
                                   itemCount: 5,
-                                  itemSize: 22,
-                                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                                  itemSize: 19,
+                                  itemPadding: EdgeInsets.symmetric(horizontal: 2.0, vertical: 8.0),
                                   itemBuilder: (context, _) => Icon(
                                     Icons.star,
                                     color: Colors.amberAccent,
@@ -100,10 +104,167 @@ class ThirdScreen extends StatelessWidget {
                                   },
                                 ),
                                 Text(
-                                  'Overzicht reservering:',
+                                  'Overzicht reservering:\n',
                                   style: TextStyle(
                                       fontStyle: FontStyle.italic,
                                       fontSize: 19.0),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Knippen man, €25,-',
+                                      style:  TextStyle(
+                                        fontSize: 19.0,
+                                      ),
+                                    ),
+                                    FlatButton(onPressed: () {
+
+                                    },
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: Theme.data.primaryColor,
+                                          ),
+                                          child: Text(
+                                            'Wijzigen',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                  Text(
+                                    'Uw kapper: Bert      ',
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                    FlatButton(onPressed: () {
+
+                                    },
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(50),
+                                              color: Theme.data.primaryColor,
+                                            ),
+                                            child: Text(
+                                              'Wijzigen',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '19 Januari, 14:30    ',
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                      ),
+                                    ),
+                                    FlatButton(onPressed: () {
+
+                                    },
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: Theme.data.primaryColor,
+                                          ),
+                                          child: Text(
+                                            'Wijzigen',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '\nContactgegevens \n',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 26),
+                                ),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Naam',
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xfff15d5d)),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value.trim().isEmpty){
+                                      return 'Veld invullen is verplicht';
+                                    }
+                                  },
+                                ),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Emailadres',
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xfff15d5d)),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value.trim().isEmpty){
+                                      return 'Veld invullen is verplicht';
+                                    }
+                                  },
+                                ),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Telefoonnummer',
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Color(0xfff15d5d)),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value.trim().isEmpty){
+                                      return 'Veld invullen is verplicht';
+                                    }
+                                  },
+                                ),
+                                Text('\n'),
+                                FlatButton(onPressed: () {
+
+                                },
+                                  child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 11),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Theme.data.primaryColor,
+                                      ),
+                                      child: Text(
+                                        'Bevestig',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
