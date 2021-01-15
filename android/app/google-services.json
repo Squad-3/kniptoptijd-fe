@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "534380042740",
+    "project_id": "cuttingapp-62020",
+    "storage_bucket": "cuttingapp-62020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534380042740:android:a04eab0a8ebe6d61e301a1",
+        "android_client_info": {
+          "package_name": "nl.kniptoptijd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534380042740-df37ourv65gsn6o4c6ciekfhjqr9h5pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_ImLHTJUd-pjk_Y3A95B10UL9zfxfAoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534380042740-df37ourv65gsn6o4c6ciekfhjqr9h5pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
