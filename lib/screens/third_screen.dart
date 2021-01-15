@@ -79,6 +79,7 @@ class ThirdScreen extends StatelessWidget {
                               horizontal: 20,
                               vertical: 15,
                             ),
+                          child: SingleChildScrollView(
                             child: Column(                                     //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -268,6 +269,7 @@ class ThirdScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
                           ),
                         ),
                       ),
