@@ -68,7 +68,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   height: 100.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(28),
-                      color: Colors.grey[300]),
+                      color: Colors.white),
                   child: TextFormField(
                     decoration: InputDecoration(
                       suffixIcon: Icon(
@@ -78,7 +78,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       hintText: 'Zoek op postcode, plaatsnaam',
                       hintStyle: TextStyle(
                           fontSize: ScreenUtil().setSp(25),
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -108,12 +108,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(28),
-                            color: Colors.grey[300]),
+                            color: Colors.white),
                         child: DateTimePicker(
                           decoration: InputDecoration(
                             hintText: 'Datum',
                             hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: ScreenUtil().setSp(30)),
                             suffixIcon: Icon(
                               Icons.event,
@@ -137,7 +137,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           lastDate: DateTime(2100),
 
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: ScreenUtil().setSp(26)),
                           //locale: Locale('en', 'US'),
                           onChanged: (val) =>
@@ -159,12 +159,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(28),
-                            color: Colors.grey[300]),
+                            color: Colors.white),
                         child: DateTimePicker(
                           decoration: InputDecoration(
                             hintText: 'Tijd',
                             hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: ScreenUtil().setSp(32)),
                             suffixIcon: Icon(
                               Icons.access_time,
@@ -203,32 +203,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 35),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      child: Center(
-                          child: Text(
-                            'VIND',
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(28),
-                                color: Colors.grey[300]),
-                          )),
-                      height: 60.h,
-                      width: 166.w,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[300]),
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.transparent),
-                    )
-                  ],
+              Text('\n'),
+              FlatButton(onPressed: () {
+
+              },
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 13),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      'Bevestig',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
