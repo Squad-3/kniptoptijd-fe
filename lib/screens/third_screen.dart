@@ -98,7 +98,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                         height:
                                             ScreenUtil().screenHeight * .01),
                                     Text(
-                                      'Kapar Hakan',
+                                      'Kapper Hakan',
                                       style: TextStyle(
                                           letterSpacing: 1,
                                           color: Colors.grey[700],
