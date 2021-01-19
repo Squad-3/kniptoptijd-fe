@@ -304,7 +304,7 @@ class ThirdScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                KappersBehandeling(),
+                                                OverzichtsMail(),
                                           ));
                                     },
                                     child: Align(
