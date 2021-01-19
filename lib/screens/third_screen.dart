@@ -17,7 +17,7 @@ class ThirdScreen extends StatefulWidget {
 class _ThirdScreenState extends State<ThirdScreen> {
   Completer<GoogleMapController> _controllerGoogleMap = Completer();
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(52.078079, 5.095087),
     zoom: 14.4746,
   );
   GoogleMapController newGoogleMapController;
@@ -30,7 +30,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
     currentPosition = position;
     LatLng latLngPosition = LatLng(position.latitude, position.longitude);
     CameraPosition cameraPosition =
-        new CameraPosition(target: latLngPosition, zoom: 14);
+        new CameraPosition(target: LatLng(52.078079, 5.095087), zoom: 15);
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
@@ -164,7 +164,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                   ))),
                         ),
                         AutoSizeText(
-                          'Uw afspaark is bevestigd u heeft een e-mail ontvangen',
+                          'Uw afspraak is bevestigd, u heeft een e-mail ontvangen',
                           style: TextStyle(
                               fontSize: ScreenUtil().setSp(45),
                               color: Colors.grey[700]),
