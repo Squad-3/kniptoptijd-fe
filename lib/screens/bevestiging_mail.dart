@@ -10,7 +10,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:kniptoptijd/screens/behandeling_overview.dart';
 
 class ThirdScreen extends StatefulWidget {
-  static const route = '/third';
+  static const route = '/';
   @override
   _ThirdScreenState createState() => _ThirdScreenState();
 }
@@ -30,7 +30,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
     currentPosition = position;
     LatLng latLngPosition = LatLng(position.latitude, position.longitude);
     CameraPosition cameraPosition =
-        new CameraPosition(target: LatLng(52.078079, 5.095087), zoom: 15);
+    new CameraPosition(target: LatLng(52.078079, 5.095087), zoom: 15);
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
@@ -96,7 +96,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                   children: [
                                     SizedBox(
                                         height:
-                                            ScreenUtil().screenHeight * .01),
+                                        ScreenUtil().screenHeight * .01),
                                     Text(
                                       'Kapper Hakan',
                                       style: TextStyle(
@@ -127,7 +127,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                   children: [
                                     SizedBox(
                                         height:
-                                            ScreenUtil().screenHeight * .01),
+                                        ScreenUtil().screenHeight * .01),
                                     Container(
                                       height: ScreenUtil().screenHeight * .11,
                                       width: ScreenUtil().screenWidth * .21,
@@ -151,7 +151,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image:
-                                          AssetImage('assets/images/image.png'),
+                                      AssetImage('assets/images/image.png'),
                                       fit: BoxFit.contain)),
                               child: Container(
                                   height: ScreenUtil().screenHeight * .12,
