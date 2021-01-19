@@ -1,10 +1,13 @@
 import 'dart:math';
-
+import 'third_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/providers/navigation_provider.dart';
+import 'package:kniptoptijd/screens/third_screen.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
 import 'package:kniptoptijd/models/kapperdata.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
@@ -38,7 +41,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   var _value6 = false;
   String valueChoose;
   List listItem = [
-    'Geen voorkeur', 'Hakan', 'Bert', 'Milou', 'Arno', 'Jeroen', 'Stijn'
+    'Geen voorkeur', 'Hakan', 'Bert', 'Arno', 'Jeroen', 'Stijn'
   ];
 
   @override
@@ -82,9 +85,9 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                        hintText: kapper.naam,
+                        hintText: 'Kapper Hakan',
                         hintStyle:
-                            TextStyle(fontSize: 24.0, color: Colors.grey[300])),
+                            TextStyle(fontSize: 26.0, color: Colors.white)),
                   ),
                 ),
                 Expanded(
@@ -244,7 +247,11 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                   ),
                                   FlatButton(
                                       onPressed: () {
-
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context)=>ThirdScreen(),
+                                            ));
                                       },
                                       child: Align(
                                         alignment: Alignment.bottomCenter,
