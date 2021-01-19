@@ -9,12 +9,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:kniptoptijd/screens/behandeling_overview.dart';
 
-class ThirdScreen extends StatefulWidget {
+class BevestigingsMail extends StatefulWidget {
   static const route = '/';
   @override
-  _ThirdScreenState createState() => _ThirdScreenState();
+  _BevestigingsMailState createState() => _BevestigingsMailState();
 }
-class _ThirdScreenState extends State<ThirdScreen> {
+class _BevestigingsMailState extends State<BevestigingsMail> {
   Completer<GoogleMapController> _controllerGoogleMap = Completer();
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(52.078079, 5.095087),
