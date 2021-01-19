@@ -299,7 +299,14 @@ class ThirdScreen extends StatelessWidget {
                                   ),
                                   Text('\n'),
                                   FlatButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                KappersBehandeling(),
+                                          ));
+                                    },
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Container(
