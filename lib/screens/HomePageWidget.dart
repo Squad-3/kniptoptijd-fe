@@ -1,6 +1,9 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kniptoptijd/providers/navigation_provider.dart';
+import 'package:provider/provider.dart';
+import '../theme.dart' as Theme;
 
 class HomePageWidget extends StatefulWidget {
   @override
@@ -22,6 +25,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   String _valueSaved4 = '';
   TextEditingController _controller3;
   TextEditingController _controller4;
+
+  NavigationProvider navigationProvider = NavigationProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -203,26 +208,50 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ],
                 ),
               ),
-              Text('\n'),
-              FlatButton(onPressed: () {
-
-              },
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 13),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                    ),
-                    child: Text(
-                      'Bevestig',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 35),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      child: Center(
+                          child: ButtonTheme(
+                            padding: EdgeInsets.all(0), //adds padding inside the button
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, //limits the touch area to the button area
+                            minWidth: 0, //wraps child's width
+                            height: 0,
+                            child: FlatButton(
+                              onPressed: () {
+                                Provider.of<NavigationProvider>(context, listen: false).setTab(1);
+                                Provider.of<NavigationProvider>(context, listen: false).setOrigin(0);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Theme.data.primaryColor,
+                                ),
+                                child: Text(
+                                  "Vind",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ),
+                      height: 60.h,
+                      width: 166.w,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey[300]),
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.transparent),
+                    )
+                  ],
                 ),
               ),
             ],

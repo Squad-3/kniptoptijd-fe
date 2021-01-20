@@ -1,25 +1,22 @@
 import 'dart:convert';
-import 'package:http/http.dart';
-import 'package:kniptoptijd/models/kapper.dart';
-import 'package:kniptoptijd/models/kapsalons.dart';
+import 'package:http/http.dart' as http;
+import 'package:kniptoptijd/models/behandeling.dart';
 
 class GetKapsalonDetails {
   final String kapsalonUrl = 'http://192.168.50.166:5000/behandeling?idkapsalon=1';
 
-  Future<List<Kapper>> getKappers() async {
-    Response res;
-    try {
-      res = await post(kapsalonUrl);
-    } catch (e) {
-      print(e);
-    }
+  Future<List<Behandeling>> fetchBehandelingen() async {
+    final response = await http.get(
+      kapsalonUrl
+    );
 
-    if(res.body != null) {
-      List<dynamic> body = jsonDecode(res.body);
-      List<dynamic> behandelingen = body.map((dynamic item) => Kapsalons.fromJson(item)).toList();
+    if(response.body != null) {
+      List<dynamic> body = jsonDecode(response.body);
+      List<Behandeling> behandelingen = body.map((dynamic item) => Behandeling.fromJson(item)).toList();
       return behandelingen;
     } else {
       throw "Geen behandelingen gevonden.";
     }
+
   }
 }

@@ -14,12 +14,14 @@ const OVERVIEW = 1;
 const THIRD_SCREEN = 2;
 
 
+
 class NavigationProvider extends ChangeNotifier {
   /// Shortcut method for getting [NavigationProvider].
   static NavigationProvider of(BuildContext context) =>
       Provider.of<NavigationProvider>(context, listen: false);
 
   int _currentScreenIndex = HOME;
+  static int _origin = 1;
 
   int get currentTabIndex => _currentScreenIndex;
 
@@ -54,12 +56,19 @@ class NavigationProvider extends ChangeNotifier {
       initialRoute: KapperOverview.route,
       navigatorState: GlobalKey<NavigatorState>(),
       onGenerateRoute: (settings) {
+        print(_origin.toString());
         print('Generating route: ${settings.name}');
         switch (settings.name) {
           case PushedScreen.route:
             return MaterialPageRoute(builder: (_) => PushedScreen());
           default:
-            return MaterialPageRoute(builder: (_) => KapperOverview());
+            if (_origin == 0) {
+              return MaterialPageRoute(
+                  builder: (_) => KapperOverview(origin: 0));
+            } else {
+              return MaterialPageRoute(
+                  builder: (_) => KapperOverview(origin: 1));
+            }
         }
       },
       scrollController: ScrollController(),
@@ -87,12 +96,24 @@ class NavigationProvider extends ChangeNotifier {
 
   /// Set currently visible tab.
   void setTab(int tab) {
+    final currentNavigatorState = currentScreen.navigatorState.currentState;
+    if (currentNavigatorState.canPop()) {
+      currentNavigatorState.pop();
+    }
     if (tab == currentTabIndex) {
       _scrollToStart();
     } else {
+      if (tab == 1){
+        setOrigin(1);
+      }
       _currentScreenIndex = tab;
       notifyListeners();
     }
+  }
+
+  void setOrigin(int origin) {
+    _origin = origin;
+    notifyListeners();
   }
 
   /// If currently displayed screen has given [ScrollController] animate it

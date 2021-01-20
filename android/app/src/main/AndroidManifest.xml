@@ -7,6 +7,8 @@
          FlutterApplication and put your custom class here. -->
     <!-- Required to fetch data from the internet. -->
     <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="kniptoptijd"
@@ -45,5 +47,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA_ImLHTJUd-pjk_Y3A95B10UL9zfxfAoQ"/>
+
     </application>
 </manifest>

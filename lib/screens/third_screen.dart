@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -10,8 +11,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'behandeling_overview.dart';
 
-class ThirdScreen extends StatelessWidget {
+class ThirdScreen extends StatefulWidget {
   static const route = '/third';
+  @override
+  _ThirdScreenState createState() => _ThirdScreenState();
+}
+class _ThirdScreenState extends State<ThirdScreen> {
+  Completer<GoogleMapController> _controllerGoogleMap = Completer();
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(52.078079, 5.095087),
+    zoom: 14.4746,
+  );
+  GoogleMapController newGoogleMapController;
+  Position currentPosition;
+  var geolocator = Geolocator();
+  double bottomPaddingOfMap = 0;
+  void locationPosition() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    currentPosition = position;
+    LatLng latLngPosition = LatLng(position.latitude, position.longitude);
+    CameraPosition cameraPosition =
+        new CameraPosition(target: LatLng(52.078079, 5.095087), zoom: 15);
+    newGoogleMapController
+        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
 
   Color mainColor = Color(0xfff15d5d);
 
@@ -61,10 +85,22 @@ class ThirdScreen extends StatelessWidget {
                     //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
                     horizontal: 20,
                     vertical: 15,
+
                   ),
-                  child: TextField(
-                    style: TextStyle(
-                      color: Colors.white,
+                  Container(
+                    height: ScreenUtil().screenHeight * .62,
+                    child: GoogleMap(
+                      initialCameraPosition: _kGooglePlex,
+                      mapType: MapType.normal,
+                      myLocationButtonEnabled: true,
+                      myLocationEnabled: true,
+                      zoomControlsEnabled: true,
+                      zoomGesturesEnabled: true,
+                      onMapCreated: (controller) {
+                        _controllerGoogleMap.complete(controller);
+                        newGoogleMapController = controller;
+                        locationPosition();
+                      },
                     ),
                     decoration: InputDecoration(
                         hintText: '',
@@ -326,15 +362,56 @@ class ThirdScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
+                          child: Container(
+                              height: ScreenUtil().screenHeight * .15,
+                              width: ScreenUtil().screenWidth * 1,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                          AssetImage('assets/images/image.png'),
+                                      fit: BoxFit.contain)),
+                              child: Container(
+                                  height: ScreenUtil().screenHeight * .12,
+                                  width: ScreenUtil().screenWidth * .1,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/image2.png'),
+                                    ),
+                                  ))),
+                        ),
+                        AutoSizeText(
+                          'Uw afspraak is bevestigd, u heeft een e-mail ontvangen',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(45),
+                              color: Colors.grey[700]),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.0.h, horizontal: 99.w),
+                          child: AutoSizeText(
+                            'Kapper Hakan 19 november 2020 om 14:30 Knippen man bij Bert',
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(37),
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                            maxLines: 3,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      ]),
+      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapper.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
-import 'package:kniptoptijd/screens/pushed_screen.dart';
+import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/screens/listscreen.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart' as Theme;
 
@@ -13,11 +12,11 @@ ButtonTheme button(BuildContext context, kapper) {
     height: 0,
     child: FlatButton(
       onPressed: () {
-        Navigator.of(
+        Navigator.pushNamed(
           context,
-          rootNavigator: false,
-        ).pushNamed(PushedScreen.route);
-        Provider.of<KapperData>(context).updateKapper(kapper);
+          ListScreen.route,
+        );
+        Provider.of<KapsalonState>(context).updateKapsalonState(kapper);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
