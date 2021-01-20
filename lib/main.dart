@@ -6,6 +6,7 @@ import 'package:kniptoptijd/services/location_search.dart';
 import 'models/kapsalonBehandelingen.dart';
 import 'providers/navigation_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:kniptoptijd/screens/behandeling_overview.dart';
 
 void main() => runApp(App());
 
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
             initialRoute: '/',
             routes: {
               '/overview': (context) => KapperOverview(origin: 2),
+              '/behandelingen': (context) => KappersBehandeling(),
             },
             onGenerateRoute: NavigationProvider.of(context).onGenerateRoute,
           );

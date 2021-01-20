@@ -8,6 +8,7 @@ import '../screens/home_page.dart';
 import '../screens/third_screen.dart';
 import '../components/exit_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:kniptoptijd/screens/behandeling_overview.dart';
 
 const HOME = 0;
 const OVERVIEW = 1;
@@ -29,8 +30,13 @@ class NavigationProvider extends ChangeNotifier {
     print('Generating route: ${settings.name}');
     switch (settings.name) {
       case PushedScreen.route:
+        print('case 1');
         return MaterialPageRoute(builder: (_) => PushedScreen());
+      case '/behandelingen':
+        print('case 2');
+        return MaterialPageRoute(builder: (_) => KappersBehandeling());
       default:
+        print('case default');
         return MaterialPageRoute(builder: (_) => Root());
     }
   }
@@ -60,8 +66,10 @@ class NavigationProvider extends ChangeNotifier {
         print('Generating route: ${settings.name}');
         switch (settings.name) {
           case PushedScreen.route:
+            print('zoek case 1');
             return MaterialPageRoute(builder: (_) => PushedScreen());
           default:
+            print('zoek default case');
             if (_origin == 0) {
               return MaterialPageRoute(
                   builder: (_) => KapperOverview(origin: 0));

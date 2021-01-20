@@ -6,13 +6,11 @@ import 'package:kniptoptijd/providers/navigation_provider.dart';
 import 'package:kniptoptijd/screens/third_screen.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kniptoptijd/models/kapsalonState.dart';
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
-  static const route = '/overview'; //route
+  static const route = '/behandelingen'; //route
   KappersBehandeling({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning

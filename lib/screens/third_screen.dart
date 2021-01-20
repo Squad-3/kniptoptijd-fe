@@ -1,41 +1,16 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:kniptoptijd/screens/HomePageWidget.dart';
+import 'package:kniptoptijd/screens/bevestiging_mail.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
 import 'behandeling_overview.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'behandeling_overview.dart';
 
-class ThirdScreen extends StatefulWidget {
+class ThirdScreen extends StatelessWidget {
   static const route = '/third';
-  @override
-  _ThirdScreenState createState() => _ThirdScreenState();
-}
-class _ThirdScreenState extends State<ThirdScreen> {
-  Completer<GoogleMapController> _controllerGoogleMap = Completer();
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(52.078079, 5.095087),
-    zoom: 14.4746,
-  );
-  GoogleMapController newGoogleMapController;
-  Position currentPosition;
-  var geolocator = Geolocator();
-  double bottomPaddingOfMap = 0;
-  void locationPosition() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    currentPosition = position;
-    LatLng latLngPosition = LatLng(position.latitude, position.longitude);
-    CameraPosition cameraPosition =
-        new CameraPosition(target: LatLng(52.078079, 5.095087), zoom: 15);
-    newGoogleMapController
-        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-  }
 
   Color mainColor = Color(0xfff15d5d);
 
@@ -85,27 +60,15 @@ class _ThirdScreenState extends State<ThirdScreen> {
                     //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
                     horizontal: 20,
                     vertical: 15,
-
                   ),
-                  Container(
-                    height: ScreenUtil().screenHeight * .62,
-                    child: GoogleMap(
-                      initialCameraPosition: _kGooglePlex,
-                      mapType: MapType.normal,
-                      myLocationButtonEnabled: true,
-                      myLocationEnabled: true,
-                      zoomControlsEnabled: true,
-                      zoomGesturesEnabled: true,
-                      onMapCreated: (controller) {
-                        _controllerGoogleMap.complete(controller);
-                        newGoogleMapController = controller;
-                        locationPosition();
-                      },
+                  child: TextField(
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
                     decoration: InputDecoration(
                         hintText: '',
                         hintStyle:
-                            TextStyle(fontSize: 24.0, color: Colors.grey[300])),
+                        TextStyle(fontSize: 24.0, color: Colors.grey[300])),
                   ),
                 ),
                 Expanded(
@@ -116,7 +79,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                         // Expanded is: gebruikt volledige breedte die beschikbaar is dus in dit geval die 90% als het in een column was de volledige hoogte
                         child: Container(
                           decoration: BoxDecoration(
-                              //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
+                            //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
                               color: Colors.white,
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20.0),
@@ -194,7 +157,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                                 horizontal: 13, vertical: 8),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(50),
+                                              BorderRadius.circular(50),
                                               color: Theme.data.primaryColor,
                                             ),
                                             child: Text(
@@ -232,7 +195,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                                 horizontal: 13, vertical: 8),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(50),
+                                              BorderRadius.circular(50),
                                               color: Theme.data.primaryColor,
                                             ),
                                             child: Text(
@@ -270,7 +233,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                                 horizontal: 13, vertical: 8),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(50),
+                                              BorderRadius.circular(50),
                                               color: Theme.data.primaryColor,
                                             ),
                                             child: Text(
@@ -336,7 +299,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                   Text('\n'),
                                   FlatButton(
                                     onPressed: () {
-                                      //Navigator.push(context, MaterialPageRoute(builder: (context) => OverzichtsMail(),));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => BevestigingsMail(),));
                                     },
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
@@ -345,7 +308,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                                             horizontal: 16, vertical: 11),
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(50),
+                                          BorderRadius.circular(50),
                                           color: Theme.data.primaryColor,
                                         ),
                                         child: Text(
@@ -362,56 +325,15 @@ class _ThirdScreenState extends State<ThirdScreen> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.0),
-                          child: Container(
-                              height: ScreenUtil().screenHeight * .15,
-                              width: ScreenUtil().screenWidth * 1,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/images/image.png'),
-                                      fit: BoxFit.contain)),
-                              child: Container(
-                                  height: ScreenUtil().screenHeight * .12,
-                                  width: ScreenUtil().screenWidth * .1,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/image2.png'),
-                                    ),
-                                  ))),
-                        ),
-                        AutoSizeText(
-                          'Uw afspraak is bevestigd, u heeft een e-mail ontvangen',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(45),
-                              color: Colors.grey[700]),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.0.h, horizontal: 99.w),
-                          child: AutoSizeText(
-                            'Kapper Hakan 19 november 2020 om 14:30 Knippen man bij Bert',
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(37),
-                                color: Colors.black87,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                            maxLines: 3,
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }

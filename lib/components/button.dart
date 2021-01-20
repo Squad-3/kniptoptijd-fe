@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/models/kapsalonState.dart';
-import 'package:kniptoptijd/screens/listscreen.dart';
+import 'package:kniptoptijd/screens/behandeling_overview.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart' as Theme;
 
@@ -12,11 +12,11 @@ ButtonTheme button(BuildContext context, kapper) {
     height: 0,
     child: FlatButton(
       onPressed: () {
-        Navigator.pushNamed(
-          context,
-          ListScreen.route,
-        );
         Provider.of<KapsalonState>(context).updateKapsalonState(kapper);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => KappersBehandeling())
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
