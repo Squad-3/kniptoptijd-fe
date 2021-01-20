@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/screens/kapper_list/kapper_list.dart';
 import 'package:kniptoptijd/services/location_search.dart';
 
 class SearchForm extends StatefulWidget {
@@ -14,7 +13,6 @@ class _SearchFormState extends State<SearchForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final searchController = TextEditingController();
-  static var test = get_kapsalon_details();
 
   @override
   void dispose() {

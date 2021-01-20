@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/screens/behandelingList.dart';
-import 'package:kniptoptijd/screens/behandeling_overview.dart';
 import 'package:kniptoptijd/theme.dart';
-
-import 'kapper_behandelingen.dart';
-
-
 
 class ThirdScreen extends StatelessWidget {
   static const route = '/third';
@@ -21,7 +15,8 @@ class ThirdScreen extends StatelessWidget {
             Expanded(
                 child: SizedBox(
                   height: 200.0,
-                    child: KapperBehandelingen()
+                    child: //KapperBehandelingen(),
+                      Text('test'),
                 )
             ),
           ],
