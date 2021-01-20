@@ -73,17 +73,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   height: 100.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(28),
-                      color: Colors.grey[300]),
+                      color: Colors.white),
                   child: TextFormField(
                     decoration: InputDecoration(
                       suffixIcon: Icon(
                         Icons.location_on,
                         color: Colors.black,
                       ),
-                      hintText: 'Zoek op postcode, ploatsnaam',
+                      hintText: 'Zoek op postcode, plaatsnaam',
                       hintStyle: TextStyle(
                           fontSize: ScreenUtil().setSp(25),
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: const BorderSide(
@@ -113,12 +113,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(28),
-                            color: Colors.grey[300]),
+                            color: Colors.white),
                         child: DateTimePicker(
                           decoration: InputDecoration(
                             hintText: 'Datum',
                             hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: ScreenUtil().setSp(30)),
                             suffixIcon: Icon(
                               Icons.event,
@@ -142,7 +142,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           lastDate: DateTime(2100),
 
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: ScreenUtil().setSp(26)),
                           //locale: Locale('en', 'US'),
                           onChanged: (val) =>
@@ -164,12 +164,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 90.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(28),
-                            color: Colors.grey[300]),
+                            color: Colors.white),
                         child: DateTimePicker(
                           decoration: InputDecoration(
                             hintText: 'Tijd',
                             hintStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: ScreenUtil().setSp(32)),
                             suffixIcon: Icon(
                               Icons.access_time,
@@ -253,7 +253,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
 
 class LocationSearch {
-  final String locationUrl = 'http://10.0.2.2:5000/locatie?locatie=utrecht';
+  final String locationUrl ='http://127.0.0.1:5000/?locatie=utrecht';
 
   Future<List<Kapsalon>> getKappers() async {
     Response res;
