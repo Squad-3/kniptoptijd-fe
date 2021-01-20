@@ -33,9 +33,8 @@ class Root extends StatelessWidget {
         return WillPopScope(
           onWillPop: () async => provider.onWillPop(context),
           child: Scaffold(
-            body: IndexedStack(
-              children: screens,
-              index: provider.currentTabIndex,
+            body: Center(
+              child: screens[provider.currentTabIndex],
             ),
             bottomNavigationBar: BottomNavigationBar(
               items: bottomNavigationBarItems,
@@ -48,4 +47,5 @@ class Root extends StatelessWidget {
       },
     );
   }
+  
 }

@@ -1,6 +1,9 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kniptoptijd/providers/navigation_provider.dart';
+import 'package:provider/provider.dart';
+import '../theme.dart' as Theme;
 
 class HomePageWidget extends StatefulWidget {
   @override
@@ -22,6 +25,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   String _valueSaved4 = '';
   TextEditingController _controller3;
   TextEditingController _controller4;
+
+  NavigationProvider navigationProvider = NavigationProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -213,12 +218,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   children: [
                     Container(
                       child: Center(
-                          child: Text(
-                            'VIND',
-                            style: TextStyle(
-                                fontSize: ScreenUtil().setSp(28),
-                                color: Colors.grey[300]),
-                          )),
+                          child: ButtonTheme(
+                            padding: EdgeInsets.all(0), //adds padding inside the button
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, //limits the touch area to the button area
+                            minWidth: 0, //wraps child's width
+                            height: 0,
+                            child: FlatButton(
+                              onPressed: () {
+                                Provider.of<NavigationProvider>(context, listen: false).setTab(1);
+                                Provider.of<NavigationProvider>(context, listen: false).setOrigin(0);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Theme.data.primaryColor,
+                                ),
+                                child: Text(
+                                  "Vind",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ),
                       height: 60.h,
                       width: 166.w,
                       decoration: BoxDecoration(

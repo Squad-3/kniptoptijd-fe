@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
+import 'package:kniptoptijd/models/kapsalonState.dart';
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
@@ -43,7 +43,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
 
   @override
   Widget build(BuildContext context) {
-    var kapper = Provider.of<KapperData>(context).kapperData;
+    var kapper = Provider.of<KapsalonState>(context).kapsalonData;
     return Scaffold(
       // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
@@ -132,6 +132,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                         fontStyle: FontStyle.italic,
                                         fontSize: 15.0),
                                   ),
+
                                   CheckboxListTile(
                                       value: _value,
                                       onChanged: (value) {
@@ -244,7 +245,6 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                   ),
                                   FlatButton(
                                       onPressed: () {
-
                                       },
                                       child: Align(
                                         alignment: Alignment.bottomCenter,

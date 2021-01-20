@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapperdata.dart';
+import 'package:kniptoptijd/models/kapsalonState.dart';
 import 'package:provider/provider.dart';
 
 import 'behandeling_overview.dart';
