@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/screens/overzicht_reservering.dart';
 import '../models/screen.dart';
 import '../screens/kapper_overview.dart';
 import '../screens/pushed_screen.dart';
@@ -86,6 +87,7 @@ class NavigationProvider extends ChangeNotifier {
       },
       scrollController: ScrollController(),
     ),
+
   };
 
   List<Screen> get screens => _screens.values.toList();
