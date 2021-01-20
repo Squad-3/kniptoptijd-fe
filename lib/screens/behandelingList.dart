@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/components/button.dart';
+import 'package:kniptoptijd/models/behandeling.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
 
-Card renderKapperCard(Kapsalon kapper, BuildContext context) {
+Card renderBehandelingList(Behandeling behandeling, BuildContext context) {
   return Card(
     margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
     child: Container(
@@ -22,9 +23,7 @@ Card renderKapperCard(Kapsalon kapper, BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(kapper.naam, style: TextStyle( fontWeight: FontWeight.bold, fontSize: 24),),
-                Text(kapper.straatnaam,),
-                Text(kapper.stad,),
+                Text(behandeling.naam, style: TextStyle( fontWeight: FontWeight.bold, fontSize: 24),),
               ],
             ),
             Spacer(),
@@ -36,7 +35,6 @@ Card renderKapperCard(Kapsalon kapper, BuildContext context) {
                   width: 80,
                 ),
                 SizedBox(height: 10),
-                button(context, kapper),
               ],
             ),
           ],

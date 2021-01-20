@@ -1,29 +1,45 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapper.dart';
-import 'package:kniptoptijd/models/kapsalons.dart';
+import 'package:kniptoptijd/models/kapsalon.dart';
+import 'package:kniptoptijd/models/kapsalonSearchResults.dart';
 import 'package:kniptoptijd/services/location_search.dart';
 import 'kapper_card.dart';
 import 'package:provider/provider.dart';
 
 class KapperList extends StatelessWidget {
-  final LocationSearch locationSearch = LocationSearch();
+  @override
+  Widget build(BuildContext context) {
+    List<Kapsalon> kappers = Provider.of<KapsalonSearchResults>(context).searchResults;
+    if(kappers.length != 0) {
+        return ListView(
+          padding: EdgeInsets.all(0),
+          children: kappers
+              .map<Widget>((Kapsalon kapper) => renderKapperCard(kapper, context))
+              .toList(),
+        );
+    }
+    else {
+      return Center(child: CircularProgressIndicator());
+    }
+  }
+}
 
-  KapperList();
+
+class SetKappers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LocationSearch locationSearch = LocationSearch();
+    log('fetching data');
+
     return FutureBuilder(
         future: locationSearch.getKappers(),
-        builder: (BuildContext context, AsyncSnapshot<List<Kapper>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<Kapsalon>> snapshot) {
           if (snapshot.hasData) {
-            Provider.of<Kapsalons>(context).updateKapsalons(snapshot.data);
-            List<Kapper> kappers = Provider.of<Kapsalons>(context).kapsalons;
-            return ListView(
-              padding: EdgeInsets.all(0),
-              children: kappers
-                  .map((Kapper kapper) => renderKapperCard(kapper, context))
-                  .toList(),
-            );
+            Provider.of<KapsalonSearchResults>(context).updateKapsalons(snapshot.data);
+            List<Kapsalon> kappers = Provider.of<KapsalonSearchResults>(context).searchResults;
+            return KapperList();
           }
           return Center(child: CircularProgressIndicator());
         });
