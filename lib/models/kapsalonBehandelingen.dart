@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'behandeling.dart';
+
 class KapsalonBehandelingen extends ChangeNotifier {
-  List behandelingen = [];
+  List<Behandeling> behandelingen = [];
 
   void updateBehandelingen(input) {
     behandelingen = input;

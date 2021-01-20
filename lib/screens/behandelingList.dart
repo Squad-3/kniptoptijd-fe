@@ -2,44 +2,58 @@ import 'package:flutter/material.dart';
 import 'package:kniptoptijd/components/button.dart';
 import 'package:kniptoptijd/models/behandeling.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
+import 'package:kniptoptijd/models/kapsalonBehandelingen.dart';
+import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:provider/provider.dart';
 
-Card renderBehandelingList(Behandeling behandeling, BuildContext context) {
-  return Card(
-    margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
-    child: Container(
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          color: Color(0x11000000),
-          blurRadius: 24.0,
-          spreadRadius: 4.0,
-        )
-      ]),
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(behandeling.naam, style: TextStyle( fontWeight: FontWeight.bold, fontSize: 24),),
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: [
-                Image(
-                  image: AssetImage("assets/images/logo.png"),
-                  height: 80,
-                  width: 80,
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
+// CheckboxListTile renderBehandelingList(Behandeling behandeling, BuildContext context) {
+//   var reserveringsDetails = Provider.of<ReserveringDetails>(context);
+//   bool _isSelected = false;
+//
+//   return CheckboxListTile(
+//
+//     value: false,
+//     onChanged: (bool newValue) {
+//       reserveringsDetails.updateBehandelingsData(behandeling.behandelingID);
+//       print(reserveringsDetails.behandelingsData);
+//       setState(() {
+//         _isSelected = newValue;
+//       });
+//     },
+//     title: Text(behandeling.naam),
+//     subtitle: Text(behandeling.prijs),
+//     isThreeLine: true,
+//   );
+//
+// }
+
+class RenderBehandelingList extends StatefulWidget {
+  final Behandeling behandeling;
+  const RenderBehandelingList(this.behandeling);
+
+  @override
+  _RenderBehandelingListState createState() => _RenderBehandelingListState();
 }
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _RenderBehandelingListState extends State<RenderBehandelingList> {
+  bool _value = false;
+  @override
+  Widget build(BuildContext context) {
+    var reserveringsDetails = Provider.of<ReserveringDetails>(this.context);
+    var behandeling = widget.behandeling;
+    return CheckboxListTile(
+      title: Text(behandeling.naam),
+      subtitle: Text(behandeling.prijs),
+      value: _value,
+      onChanged: (bool value) {
+        setState(() {
+          _value = value;
+          reserveringsDetails.updateBehandelingsData(behandeling.behandelingID);
+          print(reserveringsDetails.behandelingsData);
+        });
+      },
+    );
+  }
+}
+

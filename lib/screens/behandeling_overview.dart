@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:kniptoptijd/screens/kapper_behandelingen.dart';
+
 import 'third_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,9 +121,10 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                             ),
                             child: SingleChildScrollView(
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: <Widget>[
                                   Text(
                                     'Behandelingen',
                                     style: TextStyle(
@@ -134,84 +137,10 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                         fontStyle: FontStyle.italic,
                                         fontSize: 15.0),
                                   ),
-
-                                  CheckboxListTile(
-                                      value: _value,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _value = value;
-                                        });
-                                      },
-                                    title: Text('Knippen man 25€'),
-                                    subtitle: Text('ca. 30 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value1,
-                                    onChanged: (value) {
-                                      //Provider.of<ReserveringDetails>(context).updateBehandelingsData();
-                                      setState(() {
-                                        _value1 = value;
-                                      });
-                                    },
-                                    title: Text('Opscheer met fade 20€'),
-                                    subtitle: Text('ca. 20 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value5,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value5 = value;
-                                      });
-                                    },
-                                    title: Text('Knippen vrouw 35€'),
-                                    subtitle: Text('ca. 45 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value6,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value6 = value;
-                                      });
-                                    },
-                                    title: Text('Knippen & brushing 60€'),
-                                    subtitle: Text('ca. 1 uur en 15 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value2 = value;
-                                      });
-                                    },
-                                    title: Text('Knippen kind 20€'),
-                                    subtitle: Text('ca. 30 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value3,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value3 = value;
-                                      });
-                                    },
-                                    title: Text('Baard trimmen 20€'),
-                                    subtitle: Text('ca. 30 minuten'),
-                                    isThreeLine: true,
-                                  ),
-                                  CheckboxListTile(
-                                    value: _value4,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value4 = value;
-                                      });
-                                    },
-                                    title: Text('Haar verven 65€'),
-                                    subtitle: Text('ca. 1 uur en 30 minuten'),
-                                    isThreeLine: true,
+                                  Flexible(
+                                    child: Container(
+                                      child: BehandelingList()
+                                    )
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(14.0),
