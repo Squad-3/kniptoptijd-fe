@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
-        ChangeNotifierProvider<KapsalonState>(create: (context) => KapsalonState()),
+        ChangeNotifierProvider<ReserveringDetails>(create: (context) => ReserveringDetails()),
         ChangeNotifierProvider<KapsalonSearchResults>(create: (context) => KapsalonSearchResults()),
         ChangeNotifierProvider<KapsalonBehandelingen>(create: (context) => KapsalonBehandelingen()),
       ],

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class KapsalonState extends ChangeNotifier {
+class ReserveringDetails extends ChangeNotifier {
   dynamic kapsalonData;
+  dynamic behandelingsData;
 
-  void updateKapsalonState(input) {
+  void updateKapsalonData(input) {
     kapsalonData = input;
     notifyListeners();
   }
+  
+  void updateBehandelingsData(input) {
+    behandelingsData = input;
+    notifyListeners();
+  }
 }
+

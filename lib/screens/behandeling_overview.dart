@@ -45,7 +45,7 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
 
   @override
   Widget build(BuildContext context) {
-    var kapper = Provider.of<KapsalonState>(context).kapsalonData;
+    var kapper = Provider.of<ReserveringDetails>(context).kapsalonData;
     return Scaffold(
       // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
@@ -142,13 +142,14 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                           _value = value;
                                         });
                                       },
-                                    title: Text('Knippen heer 25€'),
+                                    title: Text('Knippen man 25€'),
                                     subtitle: Text('ca. 30 minuten'),
                                     isThreeLine: true,
                                   ),
                                   CheckboxListTile(
                                     value: _value1,
                                     onChanged: (value) {
+                                      //Provider.of<ReserveringDetails>(context).updateBehandelingsData();
                                       setState(() {
                                         _value1 = value;
                                       });

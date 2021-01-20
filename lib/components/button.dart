@@ -12,7 +12,7 @@ ButtonTheme button(BuildContext context, kapper) {
     height: 0,
     child: FlatButton(
       onPressed: () {
-        Provider.of<KapsalonState>(context).updateKapsalonState(kapper);
+        Provider.of<ReserveringDetails>(context).updateKapsalonData(kapper);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => KappersBehandeling())
