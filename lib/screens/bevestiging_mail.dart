@@ -101,26 +101,26 @@ class _BevestigingsMailState extends State<BevestigingsMail> {
                                       'Kapper Hakan',
                                       style: TextStyle(
                                           letterSpacing: 1,
-                                          color: Colors.grey[700],
+                                          color: Colors.black,
                                           fontSize: ScreenUtil().setSp(52)),
                                     ),
                                     RatingBar.builder(
-                                      initialRating: 4.5,
+                                      initialRating: 5,
                                       minRating: 1,
                                       direction: Axis.horizontal,
                                       allowHalfRating: true,
                                       itemCount: 5,
-                                      // itemPadding:
-                                      //     EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemSize: 19,
+                                      itemPadding: EdgeInsets.symmetric(
+                                          horizontal: 2.0, vertical: 8.0),
                                       itemBuilder: (context, _) => Icon(
                                         Icons.star,
-                                        color: Colors.amber,
-                                        size: 9,
+                                        color: Colors.amberAccent,
                                       ),
                                       onRatingUpdate: (rating) {
                                         print(rating);
                                       },
-                                    )
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -166,7 +166,7 @@ class _BevestigingsMailState extends State<BevestigingsMail> {
                         AutoSizeText(
                           'Uw afspraak is bevestigd, u heeft een e-mail ontvangen',
                           style: TextStyle(
-                              fontSize: ScreenUtil().setSp(45),
+                              fontSize: ScreenUtil().setSp(65),
                               color: Colors.grey[700]),
                           textAlign: TextAlign.center,
                           maxLines: 2,
