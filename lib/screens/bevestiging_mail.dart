@@ -110,7 +110,7 @@ class _BevestigingsMailState extends State<BevestigingsMail> {
                                       direction: Axis.horizontal,
                                       allowHalfRating: true,
                                       itemCount: 5,
-                                      itemSize: 19,
+                                      itemSize: 24,
                                       itemPadding: EdgeInsets.symmetric(
                                           horizontal: 2.0, vertical: 8.0),
                                       itemBuilder: (context, _) => Icon(
