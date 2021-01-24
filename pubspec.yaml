@@ -33,6 +33,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/logos/
     - assets/kappers.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -49,10 +50,14 @@ flutter:
   fonts:
     - family: Quicksand
       fonts:
-        - asset: assets/fonts/Montserrat-Regular.ttf
-          weight: 300
-        - asset: assets/fonts/Montserrat-Bold.ttf
-          weight: 600
+        - asset: assets/fonts/Quicksand-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Quicksand-Bold.ttf
+          weight: 700
+    - family: FiraSans
+      fonts:
+        - asset: assets/fonts/FiraSans-Regular.ttf
+          weight: 400
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

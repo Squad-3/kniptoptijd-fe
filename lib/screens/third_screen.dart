@@ -1,8 +1,13 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kniptoptijd/models/contactGegevens.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
+import 'package:kniptoptijd/models/searchQueries.dart';
 import 'package:kniptoptijd/screens/HomePageWidget.dart';
 import 'package:kniptoptijd/screens/bevestiging_mail.dart';
+import 'package:kniptoptijd/services/createAppointment.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
 import 'behandeling_overview.dart';
@@ -11,11 +16,19 @@ import 'behandeling_overview.dart';
 
 class ThirdScreen extends StatelessWidget {
   static const route = '/third';
+  CreateAppointment createAppointment = CreateAppointment();
 
   Color mainColor = Color(0xfff15d5d);
 
   @override
   Widget build(BuildContext context) {
+    var reservering = Provider.of<ReserveringDetails>(context);
+    var search = Provider.of<SearchQueries>(context);
+
+    final contactNaamController = TextEditingController();
+    final contactEmailController = TextEditingController();
+    final contactTelefoonController = TextEditingController();
+
     return Scaffold(
       // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
@@ -26,27 +39,15 @@ class ThirdScreen extends StatelessWidget {
             color: Colors.white,
             image: DecorationImage(
                 image: AssetImage(
-                    "assets/images/kapper_hakan.jpg"), //path veranderen voor een andere image/swoosh
+                    "assets/images/hakan_banner.png"), //path veranderen voor een andere image/swoosh
                 fit: BoxFit.contain,
                 alignment: Alignment(-1.0, -1.0)),
-          ),
-        ),
-        Positioned(
-          top: 40,
-          left: 19,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Colors.white,
-            iconSize: 42,
-            onPressed: () {
-              Navigator.pop(context);
-            },
           ),
         ),
         Container(
           //Is de hele body alles wat op de pagina staat en/of komt
           alignment: Alignment.center,
-          padding: EdgeInsets.only(top: 30),
+          padding: EdgeInsets.only(top: 50),
           child: FractionallySizedBox(
             // De container maar dan iets smaller 90% in dit geval
             widthFactor: 0.9,
@@ -55,20 +56,28 @@ class ThirdScreen extends StatelessWidget {
                   .center, //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
+                Container(
                   padding: EdgeInsets.symmetric(
-                    //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
-                    horizontal: 20,
+                    horizontal: 0,
                     vertical: 15,
                   ),
-                  child: TextField(
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                        hintText: '',
-                        hintStyle:
-                        TextStyle(fontSize: 24.0, color: Colors.grey[300])),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back_ios),
+                        color: Colors.white,
+                        iconSize: 32,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      Text(
+                        reservering.kapsalonData.naam,
+                        style: TextStyle(
+                          fontSize: 24.0, color: Colors.white, fontFamily: 'Quicksand', fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -79,7 +88,7 @@ class ThirdScreen extends StatelessWidget {
                         // Expanded is: gebruikt volledige breedte die beschikbaar is dus in dit geval die 90% als het in een column was de volledige hoogte
                         child: Container(
                           decoration: BoxDecoration(
-                            //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
+                              //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
                               color: Colors.white,
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20.0),
@@ -105,13 +114,15 @@ class ThirdScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Kapper Hakan',
+                                    reservering.kapsalonData.naam,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 24.0),
+                                        fontSize: 28.0,
+                                      fontFamily: 'Quicksand',
+                                    ),
                                   ),
                                   RatingBar.builder(
-                                    initialRating: 5,
+                                    initialRating: 4.5,
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
@@ -123,47 +134,56 @@ class ThirdScreen extends StatelessWidget {
                                       Icons.star,
                                       color: Colors.amberAccent,
                                     ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
                                   ),
                                   Text(
                                     'Overzicht reservering:\n',
                                     style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 19.0),
+                                        fontFamily: 'Quicksand',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18.0),
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Knippen man, €25,-',
-                                        style: TextStyle(
-                                          fontSize: 19.0,
+                                      Expanded(
+                                        flex: 6,
+                                        child: AutoSizeText(
+                                          'Knippen man, €25,-',
+                                          style: TextStyle(
+                                            fontSize: 19.0,
+                                            fontFamily: 'FiraSans',
+                                          ),
+                                          maxLines: 1,
                                         ),
                                       ),
-                                      FlatButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    KappersBehandeling(),
-                                              ));
-                                        },
+                                      Expanded(
+                                        flex: 4,
                                         child: Align(
                                           alignment: Alignment.centerRight,
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 13, vertical: 8),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(50),
-                                              color: Theme.data.primaryColor,
-                                            ),
-                                            child: Text(
-                                              'Wijzigen',
-                                              style: TextStyle(
-                                                color: Colors.white,
+                                          child: FlatButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        KappersBehandeling(),
+                                                  ));
+                                            },
+                                            padding: EdgeInsets.all(0),
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 13, vertical: 8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(50),
+                                                color: Theme.theme.primaryColor,
+                                              ),
+                                              child: Text(
+                                                'Wijzigen',
+                                                style: TextStyle(
+                                                  fontFamily: 'Quicksand',
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -173,35 +193,47 @@ class ThirdScreen extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Uw kapper: Bert      ',
-                                        style: TextStyle(
-                                          fontSize: 19,
+                                      Expanded(
+                                        flex: 6,
+                                        child: AutoSizeText(
+                                          'Uw kapper: ' +
+                                              reservering.gekozenKapper,
+                                          style: TextStyle(
+                                            fontSize: 19,
+                                            fontFamily: 'FiraSans',
+                                          ),
+                                          maxLines: 1,
                                         ),
                                       ),
-                                      FlatButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    KappersBehandeling(),
-                                              ));
-                                        },
+                                      Expanded(
+                                        flex: 4,
                                         child: Align(
                                           alignment: Alignment.centerRight,
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 13, vertical: 8),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(50),
-                                              color: Theme.data.primaryColor,
-                                            ),
-                                            child: Text(
-                                              'Wijzigen',
-                                              style: TextStyle(
-                                                color: Colors.white,
+                                          child: FlatButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        KappersBehandeling(),
+                                                  ));
+                                            },
+                                            padding: EdgeInsets.all(0),
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 13, vertical: 8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                color: Theme.theme.primaryColor,
+                                              ),
+                                              child: Text(
+                                                'Wijzigen',
+                                                style: TextStyle(
+                                                  fontFamily: 'Quicksand',
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -211,35 +243,46 @@ class ThirdScreen extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        '19 Januari, 14:30    ',
-                                        style: TextStyle(
-                                          fontSize: 19,
+                                      Expanded(
+                                        flex: 6,
+                                        child: AutoSizeText(
+                                          search.dateInput + ' om ' + search.timeInput,
+                                          style: TextStyle(
+                                            fontSize: 19,
+                                            fontFamily: 'FiraSans',
+                                          ),
+                                          maxLines: 1,
                                         ),
                                       ),
-                                      FlatButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HomePageWidget(),
-                                              ));
-                                        },
+                                      Expanded(
+                                        flex: 4,
                                         child: Align(
                                           alignment: Alignment.centerRight,
-                                          child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 13, vertical: 8),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(50),
-                                              color: Theme.data.primaryColor,
-                                            ),
-                                            child: Text(
-                                              'Wijzigen',
-                                              style: TextStyle(
-                                                color: Colors.white,
+                                          child: FlatButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePageWidget(),
+                                                  ));
+                                            },
+                                            padding: EdgeInsets.all(0),
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 13, vertical: 8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(50),
+                                                color: Theme.theme.primaryColor,
+                                              ),
+                                              child: Text(
+                                                'Wijzigen',
+                                                style: TextStyle(
+                                                  fontFamily: 'Quicksand',
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -251,15 +294,24 @@ class ThirdScreen extends StatelessWidget {
                                     '\nContactgegevens \n',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 26),
+                                        fontFamily: 'Quicksand',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18),
                                   ),
                                   TextFormField(
+                                    controller: contactNaamController,
                                     decoration: InputDecoration(
                                       hintText: 'Naam',
-                                      enabledBorder: UnderlineInputBorder(
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                                      border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0xfff15d5d)),
+                                            color: Color(0xff707070)),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.theme.primaryColor),
+                                        borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
                                     validator: (value) {
@@ -268,12 +320,22 @@ class ThirdScreen extends StatelessWidget {
                                       }
                                     },
                                   ),
+                                  SizedBox(height: 20),
                                   TextFormField(
+                                    controller: contactEmailController,
+                                    keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
                                       hintText: 'Emailadres',
-                                      enabledBorder: UnderlineInputBorder(
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                                      border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0xfff15d5d)),
+                                            color: Color(0xff707070)),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.theme.primaryColor),
+                                        borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
                                     validator: (value) {
@@ -282,12 +344,22 @@ class ThirdScreen extends StatelessWidget {
                                       }
                                     },
                                   ),
+                                  SizedBox(height: 20),
                                   TextFormField(
+                                    controller: contactTelefoonController,
+                                    keyboardType: TextInputType.phone,
                                     decoration: InputDecoration(
                                       hintText: 'Telefoonnummer',
-                                      enabledBorder: UnderlineInputBorder(
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                                      border: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0xfff15d5d)),
+                                            color: Color(0xff707070)),
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.theme.primaryColor),
+                                        borderRadius: BorderRadius.circular(30),
                                       ),
                                     ),
                                     validator: (value) {
@@ -298,9 +370,18 @@ class ThirdScreen extends StatelessWidget {
                                   ),
                                   Text('\n'),
                                   FlatButton(
+                                    padding: EdgeInsets.all(0),
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => BevestigingsMail(),));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                BevestigingsMail(),
+                                          ));
+                                      // Provider.of<ContactGegevens>(context).updateContactGegevens(contactNaamController.text, contactEmailController.text, contactTelefoonController.text);
+                                      // createAppointment.postAppointment(context);
                                     },
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     child: Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Container(
@@ -308,12 +389,14 @@ class ThirdScreen extends StatelessWidget {
                                             horizontal: 16, vertical: 11),
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(50),
-                                          color: Theme.data.primaryColor,
+                                              BorderRadius.circular(50),
+                                          color: Theme.theme.primaryColor,
                                         ),
                                         child: Text(
-                                          'Bevestig',
+                                          'Afspraak bevestigen',
                                           style: TextStyle(
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: FontWeight.w700,
                                             color: Colors.white,
                                           ),
                                         ),

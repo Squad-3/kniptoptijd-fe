@@ -38,7 +38,7 @@ class Root extends StatelessWidget {
             ),
             bottomNavigationBar: BottomNavigationBar(
               items: bottomNavigationBarItems,
-              selectedItemColor: Theme.data.primaryColor,
+              selectedItemColor: Theme.theme.primaryColor,
               currentIndex: provider.currentTabIndex,
               onTap: provider.setTab,
             ),

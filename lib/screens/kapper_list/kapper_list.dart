@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
 import 'package:kniptoptijd/models/kapsalonSearchResults.dart';
+import 'package:kniptoptijd/models/searchQueries.dart';
 import 'package:kniptoptijd/services/location_search.dart';
 import 'kapper_card.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class KapperList extends StatelessWidget {
         );
     }
     else {
-      return Center(child: CircularProgressIndicator());
+      return Container(color: Colors.white, child: Center(child: CircularProgressIndicator()));
     }
   }
 }
@@ -34,14 +35,14 @@ class SetKappers extends StatelessWidget {
     log('fetching data');
 
     return FutureBuilder(
-        future: locationSearch.getKappers(),
+        future: locationSearch.getKappers(Provider.of<SearchQueries>(context).searchInput),
         builder: (BuildContext context, AsyncSnapshot<List<Kapsalon>> snapshot) {
           if (snapshot.hasData) {
             Provider.of<KapsalonSearchResults>(context).updateKapsalons(snapshot.data);
             List<Kapsalon> kappers = Provider.of<KapsalonSearchResults>(context).searchResults;
             return KapperList();
           }
-          return Center(child: CircularProgressIndicator());
+          return Container(color: Colors.white, child: Center(child: CircularProgressIndicator()));
         });
   }
 }

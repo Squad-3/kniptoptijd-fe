@@ -3,7 +3,7 @@ import 'package:kniptoptijd/components/button.dart';
 import 'package:kniptoptijd/models/behandeling.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
 import 'package:kniptoptijd/models/kapsalonBehandelingen.dart';
-import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
 import 'package:provider/provider.dart';
 
 // CheckboxListTile renderBehandelingList(Behandeling behandeling, BuildContext context) {
@@ -35,7 +35,6 @@ class RenderBehandelingList extends StatefulWidget {
   _RenderBehandelingListState createState() => _RenderBehandelingListState();
 }
 
-/// This is the private State class that goes with MyStatefulWidget.
 class _RenderBehandelingListState extends State<RenderBehandelingList> {
   bool _value = false;
   @override

@@ -1,7 +1,11 @@
 import 'dart:developer';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
+import 'package:kniptoptijd/models/searchQueries.dart';
+import 'package:provider/provider.dart';
 import 'kapper_list/kapper_list.dart';
 
 class KapperOverview extends StatefulWidget {
@@ -24,10 +28,9 @@ class KapperOverview extends StatefulWidget {
 }
 
 class _KapperOverviewState extends State<KapperOverview> {
-
   @override
   Widget build(BuildContext context) {
-    log(widget.origin.toString());
+    var search = Provider.of<SearchQueries>(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(children: [
@@ -35,21 +38,21 @@ class _KapperOverviewState extends State<KapperOverview> {
           decoration: BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
-                image: AssetImage("assets/images/scaffold-bg.png"),
+                image: AssetImage("assets/images/scaffold.png"),
                 fit: BoxFit.contain,
                 alignment: Alignment(-1.0, -1.0)),
           ),
         ),
         Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.only(top: 30),
+          padding: EdgeInsets.only(top: 50),
           child: FractionallySizedBox(
             widthFactor: 0.9,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
+                Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: 15,
@@ -59,7 +62,8 @@ class _KapperOverviewState extends State<KapperOverview> {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                      hintText: '\'1234AB, Amsterdam\' om 12 uur',
+                      hintText: '\'' + search.searchInput.toString() + '\' op '+ search.dateInput + ' om ' + search.timeInput + ' uur',
+                      // hintText: '\' Text \' om 12 uur',
                       hintStyle:
                           TextStyle(fontSize: 16.0, color: Colors.grey[300]),
                       enabledBorder: UnderlineInputBorder(
@@ -87,7 +91,6 @@ class _KapperOverviewState extends State<KapperOverview> {
                   children: [
                     Expanded(
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 4),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.vertical(
@@ -115,11 +118,12 @@ class _KapperOverviewState extends State<KapperOverview> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0),
                               ),
-                              Text(
-                                '1234AB, Amsterdam om 12 uur',
+                              AutoSizeText(
+                                ('\''+ search.searchInput.toString() + '\' ' + 'op '+ search.dateInput.toString() + ' om ' + search.timeInput.toString() + ' uur'),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16.0),
+                                maxLines: 1,
                               ),
                             ],
                           ),
@@ -129,9 +133,9 @@ class _KapperOverviewState extends State<KapperOverview> {
                   ],
                 ),
                 widget.origin == 1
-                    ? Expanded(child: KapperList())
+                    ? Expanded(child: Container(color: Colors.white, child: KapperList()))
                     : Expanded(
-                        child: SetKappers(),
+                        child: Container(color: Colors.white, child: SetKappers()),
                       ),
               ],
             ),

@@ -21,7 +21,7 @@ class Kapsalon {
 
   factory Kapsalon.fromJson(Map<String, dynamic> json) {
     return Kapsalon(
-      kapperId: json['kapperId'] as int,
+      kapperId: json['kapsalonID'] as int,
       logo: json['logo'] as String,
       naam: json['naam'] as String,
       openingstijden: json['openingstijden'] as String,

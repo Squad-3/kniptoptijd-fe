@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:kniptoptijd/models/behandeling.dart';
 import 'package:kniptoptijd/models/kapsalonBehandelingen.dart';
-import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
 import 'package:kniptoptijd/services/get_kapsalon_details.dart';
+import 'package:kniptoptijd/theme.dart';
 import 'behandelingList.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,7 @@ class BehandelingList extends StatelessWidget {
       );
     }
     else {
-      return KapperBehandelingen();
+      return Container(width: 300 ,child: Text('Er zijn geen behandelingen gevonden voor deze kapsalon.', textAlign: TextAlign.center, style: TextStyle(color: Colors.red),));
     }
   }
 }
@@ -60,18 +61,18 @@ class KapperBehandelingen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetKapsalonDetails kapsalonDetails = GetKapsalonDetails(Provider.of<ReserveringDetails>(context).kapsalonData.kapperId);
+    final GetKapsalonDetails kapsalonDetails = GetKapsalonDetails();
     log('fetching data');
 
     return FutureBuilder(
-        future: kapsalonDetails.fetchBehandelingen(),
+        future: kapsalonDetails.fetchBehandelingen(Provider.of<ReserveringDetails>(context).kapsalonData.kapperId),
         builder: (BuildContext context, AsyncSnapshot<List<Behandeling>> snapshot) {
           if (snapshot.hasData) {
             Provider.of<KapsalonBehandelingen>(context).updateBehandelingen(snapshot.data);
             List<Behandeling> behandelingen = Provider.of<KapsalonBehandelingen>(context).behandelingen;
             return BehandelingList();
           }
-          return Center(child: CircularProgressIndicator());
+          return Center(child: Text('Er kan geen verbinding worden gemaakt met de database.'));
         });
   }
 }

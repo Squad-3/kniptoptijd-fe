@@ -4,12 +4,14 @@ import 'package:http/http.dart';
 import 'package:kniptoptijd/models/kapsalon.dart';
 
 class LocationSearch {
-  final String locationUrl ='http://192.168.50.166:5000/locatie?locatie=utrecht';
 
-  Future<List<Kapsalon>> getKappers() async {
+  Future<List<Kapsalon>> getKappers(searchInput) async {
+
+    final String locationUrl ='http://192.168.50.166:5000/locatie?locatie=' + searchInput;
+
     Response res;
     try {
-      res = await get(
+      res = await post(
           locationUrl
       );
     } catch (e) {

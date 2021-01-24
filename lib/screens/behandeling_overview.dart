@@ -8,7 +8,7 @@ import 'package:kniptoptijd/providers/navigation_provider.dart';
 import 'package:kniptoptijd/screens/third_screen.dart';
 import '../theme.dart' as Theme;
 import 'package:provider/provider.dart';
-import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
 
 class KappersBehandeling extends StatefulWidget {
   //de hele pagina valt onder class KapperOverview
@@ -31,7 +31,6 @@ class KappersBehandeling extends StatefulWidget {
 }
 
 class _KappersBehandelingState extends State<KappersBehandeling> {
-  //Hier haalt flutter zijn content vandaan
 
   var _value = false;
   var _value1 = false;
@@ -41,125 +40,143 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
   var _value5 = false;
   var _value6 = false;
   String valueChoose;
-  List listItem = [
-    'Geen voorkeur', 'Hakan', 'Bert', 'Arno', 'Jeroen', 'Stijn'
-  ];
+  List listItem = ['Geen voorkeur', 'Hakan', 'Bert', 'Arno', 'Jeroen', 'Stijn'];
 
   @override
   Widget build(BuildContext context) {
     var kapper = Provider.of<ReserveringDetails>(context).kapsalonData;
     return Scaffold(
-      // Is de template van de screen, rode streep/logo van de kapsalon bovenin en menu onderin
       backgroundColor: Colors.transparent,
       body: Stack(children: [
-        // In de body vind je alle content terug bijvoorbeeld stack, meerdere elementen op elkaar (z-index)
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
                 image: AssetImage(
-                    "assets/images/kapper_hakan.jpg"), //path veranderen voor een andere image/swoosh
+                    "assets/images/hakan_banner.png"),
                 fit: BoxFit.contain,
                 alignment: Alignment(-1.0, -1.0)),
           ),
         ),
         Container(
-          //Is de hele body alles wat op de pagina staat en/of komt
           alignment: Alignment.center,
-          padding: EdgeInsets.only(top: 30),
+          padding: EdgeInsets.only(top: 50),
           child: FractionallySizedBox(
-            // De container maar dan iets smaller 90% in dit geval
             widthFactor: 0.9,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment
-                  .center, //main en cross, zijn afhankelijk van een column of row, ene is horizontaal ene is verticaal
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
+                Container(
                   padding: EdgeInsets.symmetric(
-                    //EdgeInsets is eigenlijk de waarde van de padding, (EdgeInsets.only -- top left bottom right
-                    horizontal: 20,
+                    horizontal: 0,
                     vertical: 15,
                   ),
-                  child: TextField(
-                    style: TextStyle(
-                      color: Colors.white,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.arrow_back_ios),
+                        color: Colors.white,
+                        iconSize: 32,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                     ),
-                    decoration: InputDecoration(
-                        hintText: 'Kapper Hakan',
-                        hintStyle:
-                            TextStyle(fontSize: 26.0, color: Colors.white)),
+                      Text(
+                        kapper.naam,
+                        style: TextStyle(
+                          fontSize: 24.0, color: Colors.white, fontFamily: 'Quicksand', fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Row(
-                    // Dit is een row en geen column omdat we de volledige breedte wilden gebruiken ipv volledige hoogte
-                    children: [
-                      Expanded(
-                        // Expanded is: gebruikt volledige breedte die beschikbaar is dus in dit geval die 90% als het in een column was de volledige hoogte
-                        child: Container(
-                          decoration: BoxDecoration(
-                              //styling geven aan een container, dmv boxdecoration desnoods flutter boxdecoration opzoeken
-                              color: Colors.white,
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20.0),
-                                bottom: Radius.zero,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x11000000),
-                                  blurRadius: 24.0,
-                                  spreadRadius: 4.0,
-                                )
-                              ]),
-                          child: Padding(
-                            // child/children is wat er in de element boven komt te staan
-                            padding: const EdgeInsets.symmetric(
-                              //onder andere container kan nooit meerdere children hebben andere elementen hebben een list aan children nodig
-                              horizontal: 20,
-                              vertical: 15,
-                            ),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                //als ik meerdere children in een container zou willen hebben zou ik er een row/column van moeten maken
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20.0),
+                            bottom: Radius.zero,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x11000000),
+                              blurRadius: 24.0,
+                              spreadRadius: 4.0,
+                            )
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 15,
+                          ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
                                     'Behandelingen',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20.0),
+                                        fontFamily: 'Quicksand',
+                                        fontSize: 28.0),
                                   ),
-                                  Text(
-                                    ' \n Selecteer uw behandelingen hieronder:',
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 15.0),
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      child: BehandelingList()
-                                    )
-                                  ),
+                                Text(
+                                  ' \n Selecteer uw behandelingen hieronder:',
+                                  style: TextStyle(
+                                      fontFamily: 'FiraSans',
+                                      fontSize: 15.0),
+                                ),
+                              ],
+                            ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x11000000),
+                              offset: Offset(0, 24),
+                              blurRadius: 24.0,
+                              spreadRadius: 4.0,
+                            )
+                          ]
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(child: KapperBehandelingen()),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 40),
+                              child: Column(
+                                children: [
                                   Padding(
                                     padding: const EdgeInsets.all(14.0),
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 14, right: 14),
+                                      padding:
+                                      EdgeInsets.only(left: 14, right: 14),
                                       decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey, width: 1),
+                                        border: Border.all(
+                                            color: Colors.grey, width: 1),
                                         borderRadius: BorderRadius.circular(24),
                                       ),
                                       child: DropdownButton(
-                                        hint: Text('Selecteer uw kapper:'),
+                                        hint: Text('Selecteer uw kapper:', style: TextStyle(fontFamily: 'FiraSans'),),
                                         icon: Icon(Icons.content_cut),
                                         iconSize: 22,
                                         isExpanded: true,
                                         underline: SizedBox(),
                                         style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16
-                                        ),
+                                            color: Colors.black, fontSize: 16),
                                         value: valueChoose,
                                         onChanged: (newValue) {
                                           setState(() {
@@ -168,46 +185,43 @@ class _KappersBehandelingState extends State<KappersBehandeling> {
                                         },
                                         items: listItem.map((valueItem) {
                                           return DropdownMenuItem(
-                                              value : valueItem,
-                                              child: Text(valueItem),
+                                            value: valueItem,
+                                            child: Text(valueItem, style: TextStyle(fontFamily: 'FiraSans'),),
                                           );
                                         }).toList(),
                                       ),
                                     ),
                                   ),
                                   FlatButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context)=>ThirdScreen(),
-                                            ));
-                                      },
-                                      child: Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                              color: Theme.data.primaryColor,
-                                            ),
-                                            child: Text(
-                                              "Reserveer",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ThirdScreen(),
+                                          ));
+                                      Provider.of<ReserveringDetails>(context).updateGekozenKapper(valueChoose.toString());
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 14, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Theme.theme.primaryColor,
                                       ),
+                                      child: Text(
+                                        "Reserveer",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
                                       ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                          ],
+                        )
+                    )
                 ),
               ],
             ),

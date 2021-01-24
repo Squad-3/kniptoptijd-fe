@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kniptoptijd/models/kapsalonState.dart';
+import 'package:kniptoptijd/models/reserveringDetails.dart';
 import 'package:kniptoptijd/screens/behandeling_overview.dart';
 import 'package:provider/provider.dart';
 import '../theme.dart' as Theme;
@@ -22,7 +22,7 @@ ButtonTheme button(BuildContext context, kapper) {
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: Theme.data.primaryColor,
+          color: Theme.theme.primaryColor,
         ),
         child: Text(
           "Reserveer",

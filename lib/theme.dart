@@ -1,44 +1,6 @@
 import 'package:flutter/material.dart';
 
-// class AppTheme {
-//   Color primary;
-//   Color secondary;
-//   bool isDark;
-//
-//   /// Default constructor
-//   AppTheme({@required this.isDark});
-//
-//   ThemeData get themeData {
-//     /// Create a TextTheme and ColorScheme, that we can use to generate ThemeData
-//     TextTheme txtTheme = (isDark ? ThemeData.dark() : ThemeData.light()).textTheme;
-//     Color txtColor = txtTheme.bodyText1.color;
-//     ColorScheme colorScheme = ColorScheme(
-//       // Decide how you want to apply your own custom them, to the MaterialApp
-//         brightness: isDark ? Brightness.dark : Brightness.light,
-//         primary: accent1,
-//         primaryVariant: accent1,
-//         secondary: accent1,
-//         secondaryVariant: accent1,
-//         background: bg1,
-//         surface: bg1,
-//         onBackground: txtColor,
-//         onSurface: txtColor,
-//         onError: Colors.white,
-//         onPrimary: Colors.white,
-//         onSecondary: Colors.white,
-//         error: Colors.red.shade400);
-//
-//     /// Now that we have ColorScheme and TextTheme, we can create the ThemeData
-//     var t = ThemeData.from(textTheme: txtTheme, colorScheme: colorScheme)
-//     // We can also add on some extra properties that ColorScheme seems to miss
-//         .copyWith(buttonColor: accent1, cursorColor: accent1, highlightColor: accent1, toggleableActiveColor: accent1);
-//
-//     /// Return the themeData which MaterialApp can now use
-//     return t;
-//   }
-// }
-
-final ThemeData data = new ThemeData(
+final ThemeData theme = new ThemeData(
   //Theme colors
   brightness: Brightness.light,
   primarySwatch: MaterialColor(ThemeColors.primary[500].value, ThemeColors.primary),
@@ -49,12 +11,12 @@ final ThemeData data = new ThemeData(
 
 
   //Typography styling
-  fontFamily: 'Georgia',
+  fontFamily: 'FiraSans',
 
   textTheme: TextTheme(
-    headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-    headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-    bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+    headline1: TextStyle(fontSize: 55.0, fontWeight: FontWeight.bold, fontFamily: 'Quicksand'),
+    headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic, fontFamily: 'Quicksand'),
+    bodyText1: TextStyle(fontSize: 14.0,),
   ),
 
   visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -74,6 +36,11 @@ class ThemeColors {
     700: const Color(0xffee3e3e),
     800: const Color(0xffed2e2e),
     900: const Color(0xffed2e2e)
+  };
+  static const Map<int, Color> secondary = const <int, Color> {
+    400: const Color(0xffEF7373),
+    500: const Color(0xffEF7373),
+    600: const Color(0xffEF7373),
   };
 
   // static const Map<int, Color> green = const <int, Color> {
